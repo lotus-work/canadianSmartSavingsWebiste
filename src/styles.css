@@ -1,0 +1,70 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+html {
+    scroll-behavior: smooth;
+
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.header-section {
+    margin-bottom: 10px;
+}
+
+.header-section .title {
+    margin-bottom: 18px;
+    font-size: 48px;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: block;
+    text-transform: uppercase;
+    color: #bf1e2e;
+    letter-spacing: 1px;
+}
+@media screen and (max-width: 600px) {
+    .header-section .title {
+         font-size: 35px;
+    }
+  }
+
+
+.header-section .small-title {
+    font-size: 28px;
+    font-family: 'Oswald', sans-serif;
+    /* font-family: "Nunito Sans", sans-serif; */
+    color: #bf1e2e;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 0px 0px 15px;
+    text-transform: capitalize;
+}
+
+.btn {
+    border-radius: 30px !important;
+    color: #fff !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    line-height: 48px !important;
+    padding: 0 40px !important;
+    text-align: center !important;
+    transition: all .3s ease-in-out !important;
+    text-transform: uppercase;
+}
+
+.btn-vary1 {
+    background: linear-gradient(to right, #e16521, #bf1e2e);
+}
+
+.btn-vary1:hover {
+    background: linear-gradient(to right, #e16421a6, #bf1e2e);
+}

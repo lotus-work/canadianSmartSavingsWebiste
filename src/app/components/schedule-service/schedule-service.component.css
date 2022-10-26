@@ -1,0 +1,26 @@
+.schedule-services{
+    padding: 120px 0 60px 0;
+    font-family: 'Oswald', sans-serif;
+    background: url('http://avantage.bold-themes.com/business/wp-content/uploads/sites/2/2019/04/bgn-industries.png');
+    background-position: center;
+    background-size: contain;
+}
+.schedule-services .schedule-services-form{
+    background: #f8f8f8;
+    border: 1px #eee solid;
+}
+.schedule-services .get-quote-form{
+    background: rgb(42,42,42);
+    border: 1px #eee solid;
+}
+
+
+.get-quote-form h4{
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #ffff;
+}
+.get-quote-form p{
+    font-weight: 300;
+    color: #ffff;
+}
