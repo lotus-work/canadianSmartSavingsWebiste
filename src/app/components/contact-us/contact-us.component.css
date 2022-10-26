@@ -19,10 +19,19 @@
     
 }
 
+
+
 .section-contact-us .contact-card .item span {
     padding-left: 19px;
 }
-
+@media screen and (max-width: 600px) {
+    .section-contact-us .contact-card .item img {
+        width: 30px;
+    }
+    .section-contact-us .contact-card .item span {
+        padding-left: 10px;
+    }
+  }
 .section-contact-us .contact-card .item a {
     text-decoration: none;
     color: #212529;
