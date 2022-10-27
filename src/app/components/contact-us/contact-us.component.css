@@ -1,10 +1,11 @@
 .section-contact-us {
     background: rgb(255, 255, 255);
     font-family: 'Oswald', sans-serif;
+     padding-top: 60px;
+    padding-bottom: 60px;
 }
 .section-contact-us .section-1{
-    padding-top: 60px;
-    padding-bottom: 60px;
+   
     background: url('http://avantage.bold-themes.com/business/wp-content/uploads/sites/2/2019/04/bgn-industries.png');
     background-position: center;
     background-size: contain;
