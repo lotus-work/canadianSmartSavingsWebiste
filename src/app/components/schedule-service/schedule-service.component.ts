@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
 export class ScheduleServiceComponent implements OnInit {
 
   getAQuoteServicesReq = [
-    { id: 1, label: "Heating", status: "false" },
+    { id: 1, label: "Heating", status: "true" },
     { id: 2, label: "Cooling", status: "false" },
     { id: 3, label: "Water Heaters", status: "false" },
     { id: 4, label: "Tankless", status: "false" },
@@ -22,7 +22,7 @@ export class ScheduleServiceComponent implements OnInit {
   ];
 
   scheduleService = [
-    { id: 1, label: "Heating", status: "false" },
+    { id: 1, label: "Heating", status: "true" },
     { id: 2, label: "Cooling", status: "false" },
     { id: 3, label: "Water Heaters", status: "false" },
     { id: 4, label: "Tankless", status: "false" },
@@ -35,7 +35,7 @@ export class ScheduleServiceComponent implements OnInit {
   ];
 
   squareFootageOfProp = [
-    { id: 1, label: "Less than 1000 sq. ft.", status: "false" },
+    { id: 1, label: "Less than 1000 sq. ft.", status: "true" },
     { id: 2, label: "1000 - 2000 sq. ft.", status: "false" },
     { id: 3, label: "2000 - 3000 sq. ft.", status: "false" },
     { id: 4, label: "3000 - 4000 sq. ft.", status: "false" },
