@@ -10,7 +10,8 @@
 
                         </div>
                         <div class="schedule-services-form p-3">
-                            <form>
+                            <form #scheduleServiceForm="ngForm" (ngSubmit)="scheduleServiceFormData(scheduleServiceForm)"
+                            class="needs-validation" novalidate="">
                                 <p class="text-justified"> Please fill out the form below in order to schedule service and be sure that your
                                     request will be processed promptly and you will hear back from us shortly.</p>
                                 <div class="row g-3">
@@ -20,14 +21,14 @@
                                             <div class="col-sm-6 col-12 ">
                                                 <div class="form-floating mb-3">
                                                     <input type="text" class="form-control" id="floatingInput"
-                                                        placeholder="name@example.com">
+                                                    name="firstName"  ngModel>
                                                     <label for="floatingInput">First Name</label>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-12">
                                                 <div class="form-floating mb-3">
                                                     <input type="text" class="form-control" id="floatingInput"
-                                                        placeholder="name@example.com">
+                                                    name="lastName"  ngModel>
                                                     <label for="floatingInput">Last Name</label>
                                                 </div>
                                             </div>
@@ -37,7 +38,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-floating mb-3">
                                             <input type="email" class="form-control" id="floatingInput"
-                                                placeholder="name@example.com">
+                                            name="email" ngModel>
                                             <label for="floatingInput">Email Address</label>
                                         </div>
                                     </div>
@@ -45,29 +46,29 @@
                                     <div class="col-sm-6">
                                         <div class="form-floating mb-3">
                                             <input type="tel" class="form-control" id="floatingInput"
-                                                placeholder="name@example.com">
+                                               name="phoneNumber" ngModel>
                                             <label for="floatingInput">Phone</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-floating mb-3">
                                             <input type="tel" class="form-control" id="floatingInput"
-                                                placeholder="name@example.com">
+                                            name="addPhoneNumber" ngModel>
                                             <label for="floatingInput">Addl. Phone Number</label>
                                         </div>
 
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-floating mb-3">
-                                            <input type="tel" class="form-control" id="floatingInput"
-                                                placeholder="name@example.com">
+                                            <input type="text" class="form-control" id="floatingInput"
+                                            name="address"  ngModel>
                                             <label for="floatingInput">Address</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-floating mb-3">
-                                            <input type="tel" class="form-control" id="floatingInput"
-                                                placeholder="name@example.com">
+                                            <input type="text" class="form-control" id="floatingInput"
+                                            name="streetAddress"   ngModel>
                                             <label for="floatingInput">Street Address</label>
                                         </div>
 
@@ -76,16 +77,16 @@
                                         <div class="row">
                                             <div class="col-sm-6 col-12">
                                                 <div class="form-floating mb-3">
-                                                    <input type="tel" class="form-control" id="floatingInput"
-                                                        placeholder="name@example.com">
+                                                    <input type="text" class="form-control" id="floatingInput"
+                                                    name="city"   ngModel>
                                                     <label for="floatingInput">City</label>
                                                 </div>
 
                                             </div>
                                             <div class="col-sm-6 col-12">
                                                 <div class="form-floating mb-3">
-                                                    <input type="tel" class="form-control" id="floatingInput"
-                                                        placeholder="name@example.com">
+                                                    <input type="text" class="form-control" id="floatingInput"
+                                                    name="postalCode"   ngModel>
                                                     <label for="floatingInput">Postal Code</label>
                                                 </div>
                                             </div>
@@ -95,36 +96,22 @@
                                         <div class="row">
                                             <div class="col-sm-6 col-12">
                                                 <div class="form-floating mb-3">
-                                                    <select class="form-select" id="floatingSelect"
-                                                        aria-label="Floating label select example">
-                                                        <option selected value="Heating">Heating</option>
-                                                        <option value="Cooling">Cooling</option>
-                                                        <option value="Water Heaters">Water Heaters</option>
-                                                        <option value="Tankless">Tankless</option>
-                                                        <option value="Home Inspection">Home Inspection</option>
-                                                        <option value="Energy Audit">Energy Audit</option>
-                                                        <option value="HVAC Maint. / Repair">HVAC Maint. / Repair
-                                                        </option>
-                                                        <option value="Chimney Lining">Chimney Lining</option>
-                                                        <option value="Duct Cleaning">Duct Cleaning</option>
-                                                        <option value="Other">Other</option>
-                                                    </select>
+                                                    <select class="form-select " name="serviceReq" id="floatingSelect"
+                                                    aria-label="Floating label select example" required="" (change)="selectChangeHandler2($event)">
+                                                        <option *ngFor="let opt of this.scheduleService" [value]="opt.label" [selected]="opt.status == 'true'"  >
+                                                          {{opt.label}}</option>
+                                                      </select>
                                                     <label for="floatingSelect">Service(s) Required</label>
                                                 </div>
 
                                             </div>
                                             <div class="col-sm-6 col-12">
                                                 <div class="form-floating mb-3">
-                                                    <select class="form-select" id="floatingSelect"
-                                                        aria-label="Floating label select example">
-                                                        <option selected value="Less than 1000 sq. ft.">Less than 1000
-                                                            sq. ft.
-                                                        </option>
-                                                        <option value="1000 - 2000 sq. ft.">1000 - 2000 sq. ft.</option>
-                                                        <option value="2000 - 3000 sq. ft.">2000 - 3000 sq. ft.</option>
-                                                        <option value="3000 - 4000 sq. ft.">3000 - 4000 sq. ft.</option>
-                                                        <option value="4000+ sq. ft.">4000+ sq. ft.</option>
-                                                    </select>
+                                                    <select class="form-select " name="serviceReq" id="floatingSelect"
+                                                    aria-label="Floating label select example" required="" (change)="selectChangeHandler3($event)">
+                                                        <option *ngFor="let opt of this.squareFootageOfProp" [value]="opt.label" [selected]="opt.status == 'true'"  >
+                                                          {{opt.label}}</option>
+                                                      </select>
                                                     <label for="floatingSelect">Square Footage of Property</label>
                                                 </div>
 
@@ -134,20 +121,20 @@
                                     <div class="col-sm-12">
                                         <div class="form-floating">
                                             <textarea class="form-control" placeholder="Leave a comment here"
-                                                id="floatingTextarea2" style="height: 100px"></textarea>
+                                            name="addDetails" id="floatingTextarea2" style="height: 100px" ngModel></textarea>
                                             <label for="floatingTextarea2">Details / Comments</label>
                                         </div>
                                     </div>
                                     <div class="col-xl-4 col-sm-12 col-12">
                                         <div class="form-floating mb-3">
-                                            <input type="tel" class="form-control" id="floatingInput"
-                                                placeholder="name@example.com">
+                                            <input type="text" class="form-control" id="floatingInput"
+                                                name="promoCode" ngModel  >
                                             <label for="floatingInput">Promo Code</label>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"  name="subscriptionCheckbox" id="optInBooking" [checked]="subscriptionCheckbox">
                                             <label class="form-check-label text-justified" for="flexCheckDefault">
                                                 Subscription: Canadian Smart Savings may contact you to provide information about our brands, products, events, promotions, services or extended warranties, or to contact you for market research purposes. Please check here if, for some reason, you would prefer not to participate in these opportunities.
                                             </label>
@@ -168,18 +155,19 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-6 col-sm-6 col-12">
                         <div class="get-quote-form p-3">
-                            <form>
+                            <form #getaQuoteForm="ngForm" (ngSubmit)="quoteFormData(getaQuoteForm)"
+                                class="needs-validation" novalidate="">
                                 <div class="text-center">
                                     <h4>GET A QUOTE TODAY</h4>
                                     <p>Free in-home estimate!</p>
                                 </div>
-                                
+
                                 <div class="row g-3">
                                     <div class="col-sm-12 ">
 
                                         <div class="form-floating mb-3">
                                             <input type="text" class="form-control" id="floatingInput"
-                                                placeholder="name@example.com">
+                                              name="yourName"  ngModel>
                                             <label for="floatingInput">Your Name</label>
                                         </div>
                                     </div>
@@ -187,7 +175,7 @@
 
                                         <div class="form-floating mb-3">
                                             <input type="email" class="form-control" id="floatingInput"
-                                                placeholder="name@example.com">
+                                               name="email" ngModel>
                                             <label for="floatingInput">Email address</label>
                                         </div>
                                     </div>
@@ -195,7 +183,7 @@
 
                                         <div class="form-floating mb-3">
                                             <input type="tel" class="form-control" id="floatingInput"
-                                                placeholder="name@example.com">
+                                               name="phoneNumber" ngModel>
 
                                             <label for="floatingInput">Phone Number</label>
                                         </div>
@@ -203,29 +191,21 @@
                                     <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-sm-6 col-12">
-                                               
+
                                                 <div class="form-floating mb-3">
-                                                    <input type="tel" class="form-control" id="floatingInput"
-                                                        placeholder="name@example.com">
+                                                    <input type="text" class="form-control" id="floatingInput"
+                                                     name="postalCode"   ngModel>
                                                     <label for="floatingInput">Postal Code</label>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-12">
                                                 <div class="form-floating mb-3">
-                                                    <select class="form-select" id="floatingSelect"
-                                                        aria-label="Floating label select example">
-                                                        <option selected value="Heating">Heating</option>
-                                                        <option value="Cooling">Cooling</option>
-                                                        <option value="Water Heaters">Water Heaters</option>
-                                                        <option value="Tankless">Tankless</option>
-                                                        <option value="Home Inspection">Home Inspection</option>
-                                                        <option value="Energy Audit">Energy Audit</option>
-                                                        <option value="HVAC Maint. / Repair">HVAC Maint. / Repair
-                                                        </option>
-                                                        <option value="Chimney Lining">Chimney Lining</option>
-                                                        <option value="Duct Cleaning">Duct Cleaning</option>
-                                                        <option value="Other">Other</option>
-                                                    </select>
+                                                  
+                                                    <select class="form-select " name="serviceReq" id="floatingSelect"
+                                                    aria-label="Floating label select example" required="" (change)="selectChangeHandler1($event)">
+                                                        <option *ngFor="let opt of this.getAQuoteServicesReq" [value]="opt.label" [selected]="opt.status == 'true'"  >
+                                                          {{opt.label}}</option>
+                                                      </select>
                                                     <label for="floatingSelect">Service(s) Required</label>
                                                 </div>
 
@@ -235,11 +215,11 @@
                                     <div class="col-sm-12">
                                         <div class="form-floating">
                                             <textarea class="form-control" placeholder="Leave a comment here"
-                                                id="floatingTextarea2" style="height: 100px"></textarea>
+                                               name="addDetails" id="floatingTextarea2" style="height: 100px" ngModel></textarea>
                                             <label for="floatingTextarea2">Additional Details</label>
                                         </div>
                                     </div>
-                                   
+
                                     <button type="submit" class="btn btn-vary1 mt-3">Get a Quote</button>
                                 </div>
                             </form>

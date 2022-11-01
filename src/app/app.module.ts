@@ -10,7 +10,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { TestimonialsComponent } from './components/testimonials/testimonials.component';
 import { ServiceAreasComponent } from './components/service-areas/service-areas.component';
-
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,9 +25,11 @@ import { ServiceAreasComponent } from './components/service-areas/service-areas.
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule ,
+    FormsModule,
   ],
-  providers: [],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
