@@ -23,4 +23,8 @@
 }
 .navbar-text a{
 color: white !important;
+text-decoration: none;
+}
+.navbar-text a:hover{
+    text-decoration: underline;
 }
