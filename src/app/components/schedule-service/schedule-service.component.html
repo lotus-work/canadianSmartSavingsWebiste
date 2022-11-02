@@ -10,9 +10,11 @@
 
                         </div>
                         <div class="schedule-services-form p-3">
-                            <form #scheduleServiceForm="ngForm" (ngSubmit)="scheduleServiceFormData(scheduleServiceForm)"
-                            class="needs-validation" novalidate="">
-                                <p class="text-justified"> Please fill out the form below in order to schedule service and be sure that your
+                            <form #scheduleServiceForm="ngForm"
+                                (ngSubmit)="scheduleServiceFormData(scheduleServiceForm)" class="needs-validation"
+                                novalidate="">
+                                <p class="text-justified"> Please fill out the form below in order to schedule service
+                                    and be sure that your
                                     request will be processed promptly and you will hear back from us shortly.</p>
                                 <div class="row g-3">
                                     <div class="col-sm-6 ">
@@ -21,15 +23,27 @@
                                             <div class="col-sm-6 col-12 ">
                                                 <div class="form-floating mb-3">
                                                     <input type="text" class="form-control" id="floatingInput"
-                                                    name="firstName"  ngModel>
+                                                        name="firstName" #firstNameRef="ngModel" ngModel required="">
                                                     <label for="floatingInput">First Name</label>
+                                                </div>
+                                                <div *ngIf="firstNameRef.errors && (firstNameRef.dirty || firstNameRef.touched)"
+                                                    style="text-align:left; color:red;">
+                                                    <div [hidden]="!firstNameRef.errors">
+                                                        <p>&nbsp;First Name is mandatory</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-12">
                                                 <div class="form-floating mb-3">
                                                     <input type="text" class="form-control" id="floatingInput"
-                                                    name="lastName"  ngModel>
+                                                        name="lastName" #lastNameRef="ngModel" ngModel required="">
                                                     <label for="floatingInput">Last Name</label>
+                                                </div>
+                                                <div *ngIf="lastNameRef.errors && (lastNameRef.dirty || lastNameRef.touched)"
+                                                    style="text-align:left; color:red;">
+                                                    <div [hidden]="!lastNameRef.errors">
+                                                        <p>&nbsp;Last Name is mandatory</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -37,58 +51,92 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-floating mb-3">
-                                            <input type="email" class="form-control" id="floatingInput"
-                                            name="email" ngModel>
+                                            <input type="email" class="form-control" id="floatingInput" name="email"
+                                                #emailAddressRef="ngModel" ngModel required="">
                                             <label for="floatingInput">Email Address</label>
                                         </div>
+                                        <div *ngIf="emailAddressRef.errors && (emailAddressRef.dirty || emailAddressRef.touched)"
+                                            style="text-align:left; color:red;">
+                                            <div [hidden]="!emailAddressRef.errors">
+                                                <p>&nbsp;Email Address is mandatory</p>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <div class="form-floating mb-3">
-                                            <input type="tel" class="form-control" id="floatingInput"
-                                               name="phoneNumber" ngModel>
+                                            <input type="tel" class="form-control" id="floatingInput" name="phoneNumber"
+                                                #phoneNumberRef="ngModel" ngModel required="">
                                             <label for="floatingInput">Phone</label>
                                         </div>
+                                        <div *ngIf="phoneNumberRef.errors && (phoneNumberRef.dirty || phoneNumberRef.touched)"
+                                            style="text-align:left; color:red;">
+                                            <div [hidden]="!phoneNumberRef.errors">
+                                                <p>&nbsp;Phone is mandatory</p>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-floating mb-3">
                                             <input type="tel" class="form-control" id="floatingInput"
-                                            name="addPhoneNumber" ngModel>
+                                               name="addPhoneNumber" ngModel>
                                             <label for="floatingInput">Addl. Phone Number</label>
                                         </div>
-
+                                       
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingInput"
-                                            name="address"  ngModel>
+                                            <input type="text" class="form-control" id="floatingInput" name="address"
+                                               #addressRef="ngModel" ngModel required="">
                                             <label for="floatingInput">Address</label>
                                         </div>
+                                        <div *ngIf="addressRef.errors && (addressRef.dirty || addressRef.touched)"
+                                            style="text-align:left; color:red;">
+                                            <div [hidden]="!addressRef.errors">
+                                                <p>&nbsp;Address is mandatory</p>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-floating mb-3">
                                             <input type="text" class="form-control" id="floatingInput"
-                                            name="streetAddress"   ngModel>
+                                               #streetAddRef="ngModel" name="streetAddress" ngModel required="">
                                             <label for="floatingInput">Street Address</label>
                                         </div>
-
+                                        <div *ngIf="streetAddRef.errors && (streetAddRef.dirty || streetAddRef.touched)"
+                                        style="text-align:left; color:red;">
+                                        <div [hidden]="!streetAddRef.errors">
+                                            <p>&nbsp;Street Address is mandatory</p>
+                                        </div>
+                                    </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-sm-6 col-12">
                                                 <div class="form-floating mb-3">
                                                     <input type="text" class="form-control" id="floatingInput"
-                                                    name="city"   ngModel>
+                                                      #cityRef="ngModel"  name="city" ngModel required="">
                                                     <label for="floatingInput">City</label>
                                                 </div>
-
+                                                <div *ngIf="cityRef.errors && (cityRef.dirty || cityRef.touched)"
+                                                style="text-align:left; color:red;">
+                                                <div [hidden]="!cityRef.errors">
+                                                    <p>&nbsp;City is mandatory</p>
+                                                </div>
+                                            </div>
                                             </div>
                                             <div class="col-sm-6 col-12">
                                                 <div class="form-floating mb-3">
                                                     <input type="text" class="form-control" id="floatingInput"
-                                                    name="postalCode"   ngModel>
+                                                     #postalCodeRef="ngModel"   name="postalCode" ngModel required="">
                                                     <label for="floatingInput">Postal Code</label>
                                                 </div>
+                                                <div *ngIf="postalCodeRef.errors && (postalCodeRef.dirty || postalCodeRef.touched)"
+                                                style="text-align:left; color:red;">
+                                                <div [hidden]="!postalCodeRef.errors">
+                                                    <p>&nbsp;Postal Code is mandatory</p>
+                                                </div>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
@@ -97,10 +145,12 @@
                                             <div class="col-sm-6 col-12">
                                                 <div class="form-floating mb-3">
                                                     <select class="form-select " name="serviceReq" id="floatingSelect"
-                                                    aria-label="Floating label select example" required="" (change)="selectChangeHandler2($event)">
-                                                        <option *ngFor="let opt of this.scheduleService" [value]="opt.label" [selected]="opt.status == 'true'"  >
-                                                          {{opt.label}}</option>
-                                                      </select>
+                                                        aria-label="Floating label select example" required=""
+                                                        (change)="selectChangeHandler2($event)">
+                                                        <option *ngFor="let opt of this.scheduleService"
+                                                            [value]="opt.label" [selected]="opt.status == true">
+                                                            {{opt.label}}</option>
+                                                    </select>
                                                     <label for="floatingSelect">Service(s) Required</label>
                                                 </div>
 
@@ -108,10 +158,12 @@
                                             <div class="col-sm-6 col-12">
                                                 <div class="form-floating mb-3">
                                                     <select class="form-select " name="serviceReq" id="floatingSelect"
-                                                    aria-label="Floating label select example" required="" (change)="selectChangeHandler3($event)">
-                                                        <option *ngFor="let opt of this.squareFootageOfProp" [value]="opt.label" [selected]="opt.status == 'true'"  >
-                                                          {{opt.label}}</option>
-                                                      </select>
+                                                        aria-label="Floating label select example" required=""
+                                                        (change)="selectChangeHandler3($event)">
+                                                        <option *ngFor="let opt of this.squareFootageOfProp"
+                                                            [value]="opt.label" [selected]="opt.status == true">
+                                                            {{opt.label}}</option>
+                                                    </select>
                                                     <label for="floatingSelect">Square Footage of Property</label>
                                                 </div>
 
@@ -121,33 +173,40 @@
                                     <div class="col-sm-12">
                                         <div class="form-floating">
                                             <textarea class="form-control" placeholder="Leave a comment here"
-                                            name="addDetails" id="floatingTextarea2" style="height: 100px" ngModel></textarea>
+                                                name="addDetails" id="floatingTextarea2" style="height: 100px"
+                                                ngModel></textarea>
                                             <label for="floatingTextarea2">Details / Comments</label>
                                         </div>
                                     </div>
                                     <div class="col-xl-4 col-sm-12 col-12">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingInput"
-                                                name="promoCode" ngModel  >
+                                            <input type="text" class="form-control" id="floatingInput" name="promoCode"
+                                                ngModel>
                                             <label for="floatingInput">Promo Code</label>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"  name="subscriptionCheckbox" id="optInBooking" [checked]="subscriptionCheckbox">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault" name="subscriptionCheckbox" id="optInBooking"
+                                                [checked]="subscriptionCheckbox">
                                             <label class="form-check-label text-justified" for="flexCheckDefault">
-                                                Subscription: Canadian Smart Savings may contact you to provide information about our brands, products, events, promotions, services or extended warranties, or to contact you for market research purposes. Please check here if, for some reason, you would prefer not to participate in these opportunities.
+                                                Subscription: Canadian Smart Savings may contact you to provide
+                                                information about our brands, products, events, promotions, services or
+                                                extended warranties, or to contact you for market research purposes.
+                                                Please check here if, for some reason, you would prefer not to
+                                                participate in these opportunities.
                                             </label>
-                                          </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <hr class="my-4">
 
-                                <button type="submit" class="btn btn-vary1">Submit</button>
+                                <button type="submit" class="btn btn-vary1" [disabled]="!scheduleServiceForm.form.valid">Submit</button>
                             </form>
                         </div>
                     </div>
-                   
+
                 </div>
 
             </div>
@@ -166,26 +225,45 @@
                                     <div class="col-sm-12 ">
 
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingInput"
-                                              name="yourName"  ngModel>
+                                            <input type="text" class="form-control" id="floatingInput" name="yourName"
+                                                #yourNameRef="ngModel" ngModel required />
                                             <label for="floatingInput">Your Name</label>
+
+                                        </div>
+                                        <div *ngIf="yourNameRef.errors && (yourNameRef.dirty || yourNameRef.touched)"
+                                            style="text-align:left; color:red;">
+                                            <div [hidden]="!yourNameRef.errors">
+                                                <p>&nbsp;Your Name is mandatory</p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 ">
 
                                         <div class="form-floating mb-3">
-                                            <input type="email" class="form-control" id="floatingInput"
-                                               name="email" ngModel>
+                                            <input type="email" class="form-control" id="floatingInput" name="email"
+                                                #emailAdderssRef="ngModel" ngModel required />
                                             <label for="floatingInput">Email address</label>
                                         </div>
+                                        <div *ngIf="emailAdderssRef.errors && (emailAdderssRef.dirty || emailAdderssRef.touched)"
+                                            style="text-align:left; color:red;">
+                                            <div [hidden]="!emailAdderssRef.errors">
+                                                <p>&nbsp;E-Mail is mandatory</p>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-sm-12 ">
 
                                         <div class="form-floating mb-3">
-                                            <input type="tel" class="form-control" id="floatingInput"
-                                               name="phoneNumber" ngModel>
+                                            <input type="tel" class="form-control" id="floatingInput" name="phoneNumber"
+                                                #phoneNumberRef="ngModel" ngModel required />
 
                                             <label for="floatingInput">Phone Number</label>
+                                        </div>
+                                        <div *ngIf="phoneNumberRef.errors && (phoneNumberRef.dirty || phoneNumberRef.touched)"
+                                            style="text-align:left; color:red;">
+                                            <div [hidden]="!phoneNumberRef.errors">
+                                                <p>&nbsp;Phone Number is mandatory</p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
@@ -194,18 +272,27 @@
 
                                                 <div class="form-floating mb-3">
                                                     <input type="text" class="form-control" id="floatingInput"
-                                                     name="postalCode"   ngModel>
+                                                        name="postalCode" #postalCodeRef="ngModel" ngModel required />
                                                     <label for="floatingInput">Postal Code</label>
+                                                </div>
+                                                <div *ngIf="postalCodeRef.errors && (postalCodeRef.dirty || postalCodeRef.touched)"
+                                                    style="text-align:left; color:red;">
+                                                    <div [hidden]="!postalCodeRef.errors">
+                                                        <p>&nbsp;Postal Code is mandatory</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-12">
                                                 <div class="form-floating mb-3">
-                                                  
+
                                                     <select class="form-select " name="serviceReq" id="floatingSelect"
-                                                    aria-label="Floating label select example" required="" (change)="selectChangeHandler1($event)">
-                                                        <option *ngFor="let opt of this.getAQuoteServicesReq" [value]="opt.label" [selected]="opt.status == 'true'"  >
-                                                          {{opt.label}}</option>
-                                                      </select>
+                                                        aria-label="Floating label select example" required=""
+                                                        (change)="selectChangeHandler1($event)">
+
+                                                        <option *ngFor="let opt of this.getAQuoteServicesReq"
+                                                            [value]="opt.label" [selected]="opt.status == true">
+                                                            {{opt.label}}</option>
+                                                    </select>
                                                     <label for="floatingSelect">Service(s) Required</label>
                                                 </div>
 
@@ -215,37 +302,45 @@
                                     <div class="col-sm-12">
                                         <div class="form-floating">
                                             <textarea class="form-control" placeholder="Leave a comment here"
-                                               name="addDetails" id="floatingTextarea2" style="height: 100px" ngModel></textarea>
+                                                name="addDetails" id="floatingTextarea2" style="height: 100px"
+                                                ngModel></textarea>
                                             <label for="floatingTextarea2">Additional Details</label>
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-vary1 mt-3">Get a Quote</button>
+                                    <button type="submit" class="btn btn-vary1 mt-3"
+                                        [disabled]="!getaQuoteForm.form.valid">Get a Quote</button>
                                 </div>
+
                             </form>
                         </div>
                     </div>
-                    <div class="col-lg-12 col-md-6 col-sm-6 col-12 mt-3 d-flex justify-content-center align-items-center">
+                    <div
+                        class="col-lg-12 col-md-6 col-sm-6 col-12 mt-3 d-flex justify-content-center align-items-center">
                         <div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
                             <div class="carousel-inner">
-                              <div class="carousel-item active">
-                                <img src="https://www.dhontario.com/wp-content/uploads/promo-Furnace-Air-Conditioner-Rent-to-own.jpg" class="d-block" alt="...">
-                              </div>
-                              <div class="carousel-item">
-                                <img src="https://www.dhontario.com/wp-content/uploads/Promo-Tankless-rent-to-own.jpg" class="d-block" alt="...">
-                              </div>
-                           
+                                <div class="carousel-item active">
+                                    <img src="https://www.dhontario.com/wp-content/uploads/promo-Furnace-Air-Conditioner-Rent-to-own.jpg"
+                                        class="d-block" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://www.dhontario.com/wp-content/uploads/Promo-Tankless-rent-to-own.jpg"
+                                        class="d-block" alt="...">
+                                </div>
+
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Previous</span>
+                            <button class="carousel-control-prev" type="button"
+                                data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Next</span>
+                            <button class="carousel-control-next" type="button"
+                                data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
                             </button>
-                          </div>
-                       
+                        </div>
+
                     </div>
                 </div>
             </div>

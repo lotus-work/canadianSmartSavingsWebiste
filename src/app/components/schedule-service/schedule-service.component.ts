@@ -9,37 +9,37 @@ import { NgForm } from '@angular/forms';
 export class ScheduleServiceComponent implements OnInit {
 
   getAQuoteServicesReq = [
-    { id: 1, label: "Heating", status: "true" },
-    { id: 2, label: "Cooling", status: "false" },
-    { id: 3, label: "Water Heaters", status: "false" },
-    { id: 4, label: "Tankless", status: "false" },
-    { id: 5, label: "Home Inspection", status: "false" },
-    { id: 6, label: "Energy Audit", status: "false" },
-    { id: 7, label: 'HVAC Maint. / Repair', status: "false" },
-    { id: 8, label: "Chimney Lining", status: "false" },
-    { id: 9, label: "Duct Cleaning", status: "false" },
-    { id: 10, label: "Other", status: "false" },
+    { id: 1, label: "Heating", status: true },
+    { id: 2, label: "Cooling", status: false },
+    { id: 3, label: "Water Heaters", status: false },
+    { id: 4, label: "Tankless", status: false },
+    { id: 5, label: "Home Inspection", status: false },
+    { id: 6, label: "Energy Audit", status: false },
+    { id: 7, label: 'HVAC Maint. / Repair', status: false },
+    { id: 8, label: "Chimney Lining", status: false },
+    { id: 9, label: "Duct Cleaning", status: false },
+    { id: 10, label: "Other", status: false },
   ];
 
   scheduleService = [
-    { id: 1, label: "Heating", status: "true" },
-    { id: 2, label: "Cooling", status: "false" },
-    { id: 3, label: "Water Heaters", status: "false" },
-    { id: 4, label: "Tankless", status: "false" },
-    { id: 5, label: "Home Inspection", status: "false" },
-    { id: 6, label: "Energy Audit", status: "false" },
-    { id: 7, label: 'HVAC Maint. / Repair', status: "false" },
-    { id: 8, label: "Chimney Lining", status: "false" },
-    { id: 9, label: "Duct Cleaning", status: "false" },
-    { id: 10, label: "Other", status: "false" },
+    { id: 1, label: "Heating", status: true },
+    { id: 2, label: "Cooling", status: false },
+    { id: 3, label: "Water Heaters", status: false },
+    { id: 4, label: "Tankless", status: false },
+    { id: 5, label: "Home Inspection", status: false },
+    { id: 6, label: "Energy Audit", status: false },
+    { id: 7, label: 'HVAC Maint. / Repair', status: false },
+    { id: 8, label: "Chimney Lining", status: false },
+    { id: 9, label: "Duct Cleaning", status: false },
+    { id: 10, label: "Other", status: false },
   ];
 
   squareFootageOfProp = [
-    { id: 1, label: "Less than 1000 sq. ft.", status: "true" },
-    { id: 2, label: "1000 - 2000 sq. ft.", status: "false" },
-    { id: 3, label: "2000 - 3000 sq. ft.", status: "false" },
-    { id: 4, label: "3000 - 4000 sq. ft.", status: "false" },
-    { id: 5, label: "4000+ sq. ft.", status: "false" },
+    { id: 1, label: "Less than 1000 sq. ft.", status: true },
+    { id: 2, label: "1000 - 2000 sq. ft.", status: false },
+    { id: 3, label: "2000 - 3000 sq. ft.", status: false },
+    { id: 4, label: "3000 - 4000 sq. ft.", status: false },
+    { id: 5, label: "4000+ sq. ft.", status: false },
   ];
 
   selectedServiceRequiredGetQuote: string = '';
@@ -68,24 +68,23 @@ export class ScheduleServiceComponent implements OnInit {
     // console.log(form.value);
     // console.log(this.selectedServiceRequiredGetQuote);
 
-    if(form.value.yourName.length == "" || form.value.email.length  =="" || form.value.phoneNumber.length =="" ||form.value.postalCode.length =="")
-    {
-      alert("All fields are required !");
-    }else{
+  
       var http = new XMLHttpRequest();
       http.open("POST", "https://workflow-automation.podio.com/catch/2328e470au0u194", true);
       http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   
       http.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-          alert("Form submitted successfully");
+          location.replace("/thank-you");
         }
       };
+      if(this.selectedServiceRequiredGetQuote == '')
+      {
+        this.selectedServiceRequiredGetQuote = 'Heating';
+      }
       const obj = { yourName: form.value.yourName, email: form.value.email, phoneNumber: form.value.phoneNumber, postalCode: form.value.postalCode, addDetails: form.value.addDetails, serviceReq: this.selectedServiceRequiredGetQuote }
       const myJSON = JSON.stringify(obj);
       http.send(myJSON);
-  
-    }
   
   }
 
@@ -99,20 +98,26 @@ export class ScheduleServiceComponent implements OnInit {
       this.subscriptionCheckbox = "No";
     }
 
-    if(form.value.firstName.length == "" || form.value.lastName.length  =="" || form.value.email.length =="" ||form.value.phoneNumber.length ==""
-    || form.value.address.length =="" ||form.value.address.length =="" || form.value.streetAddress.length =="" ||form.value.city.length =="" || form.value.postalCode.length =="")
-    {
-      alert("All fields are required !");
-    }else{
+   
       var http = new XMLHttpRequest();
       http.open("POST", "https://workflow-automation.podio.com/catch/6td647n6038c800", true);
       http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   
       http.onreadystatechange = function () {
          if (this.readyState == 4 && this.status == 200) {
-          alert("Form submitted successfully");
+          location.replace("/thank-you");
         }
       };
+    
+      if(this.selectedScheduleService == '')
+      {
+        this.selectedScheduleService = 'Heating';
+      }
+      if(this.selectedSquareFootageOfProperty == '')
+      {
+        this.selectedSquareFootageOfProperty = 'Less than 1000 sq. ft.';
+      }
+
       const obj = {
         firstName: form.value.firstName,
         lastName: form.value.lastName,
@@ -132,7 +137,6 @@ export class ScheduleServiceComponent implements OnInit {
       const myJSON = JSON.stringify(obj);
       http.send(myJSON);
     }
-    
-  }
+  
 
 }

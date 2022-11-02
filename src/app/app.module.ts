@@ -12,6 +12,7 @@ import { TestimonialsComponent } from './components/testimonials/testimonials.co
 import { ServiceAreasComponent } from './components/service-areas/service-areas.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ThankYouComponent } from './components/thank-you/thank-you.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     ContactUsComponent,
     TestimonialsComponent,
-    ServiceAreasComponent
+    ServiceAreasComponent,
+    ThankYouComponent
   ],
   imports: [
     BrowserModule,
