@@ -106,7 +106,11 @@ export class ScheduleServiceComponent implements OnInit {
       var http = new XMLHttpRequest();
       http.open("POST", "https://workflow-automation.podio.com/catch/6td647n6038c800", true);
       http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  
+      http.setRequestHeader("Access-Control-Allow-Origin", "https://canadiansmartsavings.ca/");
+      http.setRequestHeader(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+      );
       http.onreadystatechange = function () {
          if (this.readyState == 4 && this.status == 200) {
           location.replace("/thank-you");
