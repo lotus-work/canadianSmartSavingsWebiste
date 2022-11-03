@@ -72,7 +72,7 @@ export class ScheduleServiceComponent implements OnInit {
       var http = new XMLHttpRequest();
       http.open("POST", "https://workflow-automation.podio.com/catch/2328e470au0u194", true);
       http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      http.setRequestHeader("Access-Control-Allow-Origin", "*");
+      http.setRequestHeader('Access-Control-Allow-Origin', '*');
       http.setRequestHeader(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept"
@@ -106,7 +106,7 @@ export class ScheduleServiceComponent implements OnInit {
       var http = new XMLHttpRequest();
       http.open("POST", "https://workflow-automation.podio.com/catch/6td647n6038c800", true);
       http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      http.setRequestHeader("Access-Control-Allow-Origin", "*");
+      http.setRequestHeader('Access-Control-Allow-Origin', '*');
       http.setRequestHeader(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept"
