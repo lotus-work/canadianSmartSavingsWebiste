@@ -98,19 +98,6 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingInput"
-                                               #streetAddRef="ngModel" name="streetAddress" ngModel required="">
-                                            <label for="floatingInput">Street Address</label>
-                                        </div>
-                                        <div *ngIf="streetAddRef.errors && (streetAddRef.dirty || streetAddRef.touched)"
-                                        style="text-align:left; color:red;">
-                                        <div [hidden]="!streetAddRef.errors">
-                                            <p>&nbsp;Street Address is mandatory</p>
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-sm-6 col-12">
                                                 <div class="form-floating mb-3">
@@ -140,6 +127,30 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="floatingInput"
+                                               #stateRef="ngModel" name="state" ngModel required="">
+                                            <label for="floatingInput">State</label>
+                                        </div>
+                                        <div *ngIf="stateRef.errors && (stateRef.dirty || stateRef.touched)"
+                                        style="text-align:left; color:red;">
+                                        <div [hidden]="!stateRef.errors">
+                                            <p>&nbsp;State is mandatory</p>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-floating mb-3">
+                                            <select class="form-select " name="country" id="floatingSelect"
+                                                aria-label="Floating label select example" required=""
+                                                 disabled>
+                                                <option value="Canada" >Canada</option>
+                                            </select>
+                                            <label for="floatingSelect">Country</label>
+                                        </div>
+                                    </div>
+                                  
                                     <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-sm-6 col-12">
@@ -188,7 +199,7 @@
                                     <div class="col-12">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckDefault" name="subscriptionCheckbox" id="optInBooking"
+                                                id="flexCheckDefault" name="subscriptionCheckbox"
                                                 [checked]="subscriptionCheckbox">
                                             <label class="form-check-label text-justified" for="flexCheckDefault">
                                                 Subscription: Canadian Smart Savings may contact you to provide

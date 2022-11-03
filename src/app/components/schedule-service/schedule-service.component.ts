@@ -90,7 +90,7 @@ export class ScheduleServiceComponent implements OnInit {
 
   scheduleServiceFormData(form: NgForm) {
     console.log(form.value);
-    const subsVal = document.querySelector("#optInBooking") as HTMLInputElement;
+    const subsVal = document.querySelector("#flexCheckDefault") as HTMLInputElement;
     if (subsVal.checked == true) {
       this.subscriptionCheckbox = "Yes";
     }
@@ -125,7 +125,8 @@ export class ScheduleServiceComponent implements OnInit {
         phoneNumber: form.value.phoneNumber,
         addPhoneNumber: form.value.addPhoneNumber,
         address: form.value.address,
-        streetAddress: form.value.streetAddress,
+        state: form.value.state,
+        country: "Canada",
         city: form.value.city,
         postalCode: form.value.postalCode,
         addDetails: form.value.addDetails,
