@@ -68,28 +68,34 @@ export class ScheduleServiceComponent implements OnInit {
     // console.log(form.value);
     // console.log(this.selectedServiceRequiredGetQuote);
 
-  
-      var http = new XMLHttpRequest();
-      http.open("POST", "https://cors-anywhere.herokuapp.com/https://workflow-automation.podio.com/catch/2328e470au0u194", true);
-      http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      http.setRequestHeader('Access-Control-Allow-Origin','*');
-      http.setRequestHeader('Access-Control-Allow-Methods','POST, GET, OPTIONS, PUT, DELETE');
-      http.setRequestHeader('Access-Control-Allow-Headers','Content-Type, X-Auth-Token, Origin, Authorization');
-      
-      
-      http.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          location.replace("/thank-you");
-        }
-      };
-      if(this.selectedServiceRequiredGetQuote == '')
-      {
-        this.selectedServiceRequiredGetQuote = 'Heating';
+
+    var http = new XMLHttpRequest();
+    http.open("POST", "https://thebackend-weekend.herokuapp.com/canadian-smart-savings/get-a-quote", true);
+    http.setRequestHeader("Content-type", "application/json");
+    http.setRequestHeader('Access-Control-Allow-Origin', '*');
+    http.setRequestHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
+    http.setRequestHeader('Access-Control-Allow-Headers', 'Content-Type, X-Auth-Token, Origin, Authorization');
+
+
+    http.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        location.replace("/thank-you");
       }
-      const obj = { yourName: form.value.yourName, email: form.value.email, phoneNumber: form.value.phoneNumber, postalCode: form.value.postalCode, addDetails: form.value.addDetails, serviceReq: this.selectedServiceRequiredGetQuote }
-      const myJSON = JSON.stringify(obj);
-      http.send(myJSON);
-  
+    };
+    if (this.selectedServiceRequiredGetQuote == '') {
+      this.selectedServiceRequiredGetQuote = 'Heating';
+    }
+    const obj ={
+      "yourName": form.value.yourName,
+      "email": form.value.email,
+      "phoneNumber": form.value.phoneNumber,
+      "postalCode": form.value.postalCode,
+      "addDetails": form.value.addDetails,
+      "serviceReq": this.selectedServiceRequiredGetQuote
+    };
+    const myJSON = JSON.stringify(obj);
+    http.send(myJSON);
+
   }
 
   scheduleServiceFormData(form: NgForm) {
@@ -102,46 +108,47 @@ export class ScheduleServiceComponent implements OnInit {
       this.subscriptionCheckbox = "No";
     }
 
-   
-      var http = new XMLHttpRequest();
-      http.open("POST", "https://cors-anywhere.herokuapp.com/https://workflow-automation.podio.com/catch/6td647n6038c800", true);
-      http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  
-      http.onreadystatechange = function () {
-         if (this.readyState == 4 && this.status == 200) {
-          location.replace("/thank-you");
-        }
-      };
-    
-      if(this.selectedScheduleService == '')
-      {
-        this.selectedScheduleService = 'Heating';
-      }
-      if(this.selectedSquareFootageOfProperty == '')
-      {
-        this.selectedSquareFootageOfProperty = 'Less than 1000 sq. ft.';
-      }
 
-      const obj = {
-        firstName: form.value.firstName,
-        lastName: form.value.lastName,
-        email: form.value.email,
-        phoneNumber: form.value.phoneNumber,
-        addPhoneNumber: form.value.addPhoneNumber,
-        address: form.value.address,
-        state: form.value.state,
-        country: "Canada",
-        city: form.value.city,
-        postalCode: form.value.postalCode,
-        addDetails: form.value.addDetails,
-        serviceReq: this.selectedScheduleService,
-        squareFootageOfProp: this.selectedSquareFootageOfProperty,
-        subscribtion: this.subscriptionCheckbox,
-        promoCode: form.value.promoCode
+    var http = new XMLHttpRequest();
+    http.open("POST", "https://thebackend-weekend.herokuapp.com/canadian-smart-savings/schedule-service", true);
+    http.setRequestHeader("Content-type", "application/json");
+    http.setRequestHeader('Access-Control-Allow-Origin', '*');
+    http.setRequestHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
+    http.setRequestHeader('Access-Control-Allow-Headers', 'Content-Type, X-Auth-Token, Origin, Authorization');
+
+    http.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        location.replace("/thank-you");
       }
-      const myJSON = JSON.stringify(obj);
-      http.send(myJSON);
+    };
+
+    if (this.selectedScheduleService == '') {
+      this.selectedScheduleService = 'Heating';
     }
-  
+    if (this.selectedSquareFootageOfProperty == '') {
+      this.selectedSquareFootageOfProperty = 'Less than 1000 sq. ft.';
+    }
+
+    const obj = {
+      firstName: form.value.firstName,
+      lastName: form.value.lastName,
+      email: form.value.email,
+      phoneNumber: form.value.phoneNumber,
+      addPhoneNumber: form.value.addPhoneNumber,
+      address: form.value.address,
+      state: form.value.state,
+      country: "Canada",
+      city: form.value.city,
+      postalCode: form.value.postalCode,
+      addDetails: form.value.addDetails,
+      serviceReq: this.selectedScheduleService,
+      squareFootageOfProp: this.selectedSquareFootageOfProperty,
+      subscribtion: this.subscriptionCheckbox,
+      promoCode: form.value.promoCode
+    }
+    const myJSON = JSON.stringify(obj);
+    http.send(myJSON);
+  }
+
 
 }
