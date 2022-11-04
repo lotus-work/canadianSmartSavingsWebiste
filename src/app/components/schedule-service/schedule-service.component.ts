@@ -72,7 +72,11 @@ export class ScheduleServiceComponent implements OnInit {
       var http = new XMLHttpRequest();
       http.open("POST", "https://cors-anywhere.herokuapp.com/https://workflow-automation.podio.com/catch/2328e470au0u194", true);
       http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  
+      http.setRequestHeader('Access-Control-Allow-Origin','*');
+      http.setRequestHeader('Access-Control-Allow-Methods','POST, GET, OPTIONS, PUT, DELETE');
+      http.setRequestHeader('Access-Control-Allow-Headers','Content-Type, X-Auth-Token, Origin, Authorization');
+      
+      
       http.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           location.replace("/thank-you");
