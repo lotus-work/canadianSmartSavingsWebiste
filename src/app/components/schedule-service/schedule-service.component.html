@@ -132,12 +132,12 @@
                                         <div class="form-floating mb-3">
                                             <input type="text" class="form-control" id="floatingInput"
                                                #stateRef="ngModel" name="state" ngModel required="">
-                                            <label for="floatingInput">State</label>
+                                            <label for="floatingInput">Province</label>
                                         </div>
                                         <div *ngIf="stateRef.errors && (stateRef.dirty || stateRef.touched)"
                                         style="text-align:left; color:red;">
                                         <div [hidden]="!stateRef.errors">
-                                            <p>&nbsp;State is mandatory</p>
+                                            <p>&nbsp;Province is mandatory</p>
                                         </div>
                                     </div>
                                     </div>

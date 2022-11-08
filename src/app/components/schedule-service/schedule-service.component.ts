@@ -10,29 +10,31 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class ScheduleServiceComponent implements OnInit {
 
   getAQuoteServicesReq = [
-    { id: 1, label: "Heating", status: true },
-    { id: 2, label: "Cooling", status: false },
-    { id: 3, label: "Water Heaters", status: false },
-    { id: 4, label: "Tankless", status: false },
-    { id: 5, label: "Home Inspection", status: false },
-    { id: 6, label: "Energy Audit", status: false },
-    { id: 7, label: 'HVAC Maint. / Repair', status: false },
-    { id: 8, label: "Chimney Lining", status: false },
-    { id: 9, label: "Duct Cleaning", status: false },
-    { id: 10, label: "Other", status: false },
+    { id: 1, label: "New Account Setup", status: true },
+    { id: 2, label: "Heating", status: false },
+    { id: 3, label: "Cooling", status: false },
+    { id: 4, label: "Water Heaters", status: false },
+    { id: 5, label: "Tankless", status: false },
+    { id: 6, label: "Home Inspection", status: false },
+    { id: 7, label: "Energy Audit", status: false },
+    { id: 8, label: 'HVAC Maint. / Repair', status: false },
+    { id: 9, label: "Chimney Lining", status: false },
+    { id: 10, label: "Duct Cleaning", status: false },
+    { id: 11, label: "Other", status: false },
   ];
 
   scheduleService = [
-    { id: 1, label: "Heating", status: true },
-    { id: 2, label: "Cooling", status: false },
-    { id: 3, label: "Water Heaters", status: false },
-    { id: 4, label: "Tankless", status: false },
-    { id: 5, label: "Home Inspection", status: false },
-    { id: 6, label: "Energy Audit", status: false },
-    { id: 7, label: 'HVAC Maint. / Repair', status: false },
-    { id: 8, label: "Chimney Lining", status: false },
-    { id: 9, label: "Duct Cleaning", status: false },
-    { id: 10, label: "Other", status: false },
+    { id: 1, label: "New Account Setup", status: true },
+    { id: 2, label: "Heating", status: false },
+    { id: 3, label: "Cooling", status: false },
+    { id: 4, label: "Water Heaters", status: false },
+    { id: 5, label: "Tankless", status: false },
+    { id: 6, label: "Home Inspection", status: false },
+    { id: 7, label: "Energy Audit", status: false },
+    { id: 8, label: 'HVAC Maint. / Repair', status: false },
+    { id: 9, label: "Chimney Lining", status: false },
+    { id: 10, label: "Duct Cleaning", status: false },
+    { id: 11, label: "Other", status: false },
   ];
 
   squareFootageOfProp = [
@@ -96,7 +98,7 @@ export class ScheduleServiceComponent implements OnInit {
       this.spinner.hide();
     }, 1000);
     if (this.selectedServiceRequiredGetQuote == '') {
-      this.selectedServiceRequiredGetQuote = 'Heating';
+      this.selectedServiceRequiredGetQuote = 'New Account Setup';
     }
     const obj ={
       "yourName": form.value.yourName,
@@ -145,7 +147,7 @@ export class ScheduleServiceComponent implements OnInit {
    
 
     if (this.selectedScheduleService == '') {
-      this.selectedScheduleService = 'Heating';
+      this.selectedScheduleService = 'New Account Setup';
     }
     if (this.selectedSquareFootageOfProperty == '') {
       this.selectedSquareFootageOfProperty = 'Less than 1000 sq. ft.';
