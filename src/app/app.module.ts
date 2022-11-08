@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,9 @@ import { ServiceAreasComponent } from './components/service-areas/service-areas.
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +33,10 @@ import { ThankYouComponent } from './components/thank-you/thank-you.component';
     AppRoutingModule,
     HttpClientModule ,
     FormsModule,
+    BrowserAnimationsModule,
+    NgxSpinnerModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })

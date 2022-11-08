@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-schedule-service',
@@ -57,16 +58,22 @@ export class ScheduleServiceComponent implements OnInit {
     this.selectedSquareFootageOfProperty = event.target.value;
   }
 
-  constructor() {
+  constructor(private spinner: NgxSpinnerService) {
 
   }
 
   ngOnInit(): void {
+   
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 5000);
   }
 
   quoteFormData(form: NgForm) {
     // console.log(form.value);
     // console.log(this.selectedServiceRequiredGetQuote);
+    this.spinner.show();
 
 
     var http = new XMLHttpRequest();
@@ -76,12 +83,17 @@ export class ScheduleServiceComponent implements OnInit {
     http.setRequestHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
     http.setRequestHeader('Access-Control-Allow-Headers', 'Content-Type, X-Auth-Token, Origin, Authorization');
 
-
-    http.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        location.replace("/thank-you");
-      }
-    };
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          
+          location.replace("/thank-you");
+          
+        }
+      };
+      this.spinner.hide();
+    }, 1000);
     if (this.selectedServiceRequiredGetQuote == '') {
       this.selectedServiceRequiredGetQuote = 'Heating';
     }
@@ -99,6 +111,8 @@ export class ScheduleServiceComponent implements OnInit {
   }
 
   scheduleServiceFormData(form: NgForm) {
+    this.spinner.show();
+
     console.log(form.value);
     const subsVal = document.querySelector("#flexCheckDefault") as HTMLInputElement;
     if (subsVal.checked == true) {
@@ -116,11 +130,18 @@ export class ScheduleServiceComponent implements OnInit {
     http.setRequestHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
     http.setRequestHeader('Access-Control-Allow-Headers', 'Content-Type, X-Auth-Token, Origin, Authorization');
 
-    http.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        location.replace("/thank-you");
-      }
-    };
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          
+          location.replace("/thank-you");
+          
+        }
+      };
+      this.spinner.hide();
+    }, 1000);
+   
 
     if (this.selectedScheduleService == '') {
       this.selectedScheduleService = 'Heating';

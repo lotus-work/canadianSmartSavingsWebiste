@@ -102,19 +102,6 @@
                                             <div class="col-sm-6 col-12">
                                                 <div class="form-floating mb-3">
                                                     <input type="text" class="form-control" id="floatingInput"
-                                                      #cityRef="ngModel"  name="city" ngModel required="">
-                                                    <label for="floatingInput">City</label>
-                                                </div>
-                                                <div *ngIf="cityRef.errors && (cityRef.dirty || cityRef.touched)"
-                                                style="text-align:left; color:red;">
-                                                <div [hidden]="!cityRef.errors">
-                                                    <p>&nbsp;City is mandatory</p>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            <div class="col-sm-6 col-12">
-                                                <div class="form-floating mb-3">
-                                                    <input type="text" class="form-control" id="floatingInput"
                                                      #postalCodeRef="ngModel"   name="postalCode" ngModel required="">
                                                     <label for="floatingInput">Postal Code</label>
                                                 </div>
@@ -125,6 +112,20 @@
                                                 </div>
                                             </div>
                                             </div>
+                                            <div class="col-sm-6 col-12">
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="floatingInput"
+                                                      #cityRef="ngModel"  name="city" ngModel required="">
+                                                    <label for="floatingInput">City</label>
+                                                </div>
+                                                <div *ngIf="cityRef.errors && (cityRef.dirty || cityRef.touched)"
+                                                style="text-align:left; color:red;">
+                                                <div [hidden]="!cityRef.errors">
+                                                    <p>&nbsp;City is mandatory</p>
+                                                </div>
+                                            </div>
+                                            </div>
+                                          
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
