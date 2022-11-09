@@ -16,6 +16,7 @@ import { ThankYouComponent } from './components/thank-you/thank-you.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgToastModule } from "ng-angular-popup";
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     FormsModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    NgToastModule 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [HttpClientModule],

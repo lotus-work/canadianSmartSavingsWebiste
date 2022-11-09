@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { NgToastService } from 'ng-angular-popup';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ScheduleServicesService } from 'src/app/services/schedule-services.service';
 
 @Component({
   selector: 'app-schedule-service',
@@ -50,6 +53,9 @@ export class ScheduleServiceComponent implements OnInit {
   selectedSquareFootageOfProperty: string = '';
   subscriptionCheckbox: any;
 
+
+
+
   selectChangeHandler1(event: any) {
     this.selectedServiceRequiredGetQuote = event.target.value;
   }
@@ -60,7 +66,7 @@ export class ScheduleServiceComponent implements OnInit {
     this.selectedSquareFootageOfProperty = event.target.value;
   }
 
-  constructor(private spinner: NgxSpinnerService) {
+  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private _scheduleService: ScheduleServicesService, private _toast: NgToastService) {
 
   }
 
@@ -74,43 +80,29 @@ export class ScheduleServiceComponent implements OnInit {
   }
 
   quoteFormData(form: NgForm) {
-    // console.log(form.value);
-    // console.log(this.selectedServiceRequiredGetQuote);
-    this.spinner.show();
-
-
-    var http = new XMLHttpRequest();
-    http.open("POST", "https://thebackend-weekend.herokuapp.com/canadian-smart-savings/get-a-quote", true);
-    http.setRequestHeader("Content-type", "application/json");
-    http.setRequestHeader('Access-Control-Allow-Origin', '*');
-    http.setRequestHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
-    http.setRequestHeader('Access-Control-Allow-Headers', 'Content-Type, X-Auth-Token, Origin, Authorization');
-
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      http.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          
-          location.replace("/thank-you");
-          
-        }
-      };
-      this.spinner.hide();
-    }, 1000);
+    console.log(form.value);
+    console.log(this.selectedServiceRequiredGetQuote);
     if (this.selectedServiceRequiredGetQuote == '') {
       this.selectedServiceRequiredGetQuote = 'New Account Setup';
     }
-    const obj ={
-      "yourName": form.value.yourName,
-      "email": form.value.email,
-      "phoneNumber": form.value.phoneNumber,
-      "postalCode": form.value.postalCode,
-      "addDetails": form.value.addDetails,
-      "serviceReq": this.selectedServiceRequiredGetQuote
-    };
-    const myJSON = JSON.stringify(obj);
-    http.send(myJSON);
+    this.spinner.show();
 
+    this._scheduleService.sendGetQuoteData(form.value.yourName, form.value.email, form.value.phoneNumber, form.value.postalCode, form.value.addDetails, this.selectedServiceRequiredGetQuote).subscribe(
+      res => {
+        setTimeout(() => {
+         
+          this.spinner.hide();
+        }, 1000);
+        this._toast.success({ detail: "SUCCESS", summary: 'Form successfully submitted', position: 'br' });
+        setTimeout(function () {
+          window.location.href = '/thank-you'
+        }, 1000);
+
+      },
+      err => {
+        this._toast.warning({ detail: " FAILED", summary: 'Please try after sometime', position: 'br' });
+
+      }, () => console.log("QUOTE FORM SUMBITTED SUCCESSFULLY"))
   }
 
   scheduleServiceFormData(form: NgForm) {
@@ -125,27 +117,6 @@ export class ScheduleServiceComponent implements OnInit {
       this.subscriptionCheckbox = "No";
     }
 
-
-    var http = new XMLHttpRequest();
-    http.open("POST", "https://thebackend-weekend.herokuapp.com/canadian-smart-savings/schedule-service", true);
-    http.setRequestHeader("Content-type", "application/json");
-    http.setRequestHeader('Access-Control-Allow-Origin', '*');
-    http.setRequestHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
-    http.setRequestHeader('Access-Control-Allow-Headers', 'Content-Type, X-Auth-Token, Origin, Authorization');
-
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      http.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          
-          location.replace("/thank-you");
-          
-        }
-      };
-      this.spinner.hide();
-    }, 1000);
-   
-
     if (this.selectedScheduleService == '') {
       this.selectedScheduleService = 'New Account Setup';
     }
@@ -153,25 +124,22 @@ export class ScheduleServiceComponent implements OnInit {
       this.selectedSquareFootageOfProperty = 'Less than 1000 sq. ft.';
     }
 
-    const obj = {
-      firstName: form.value.firstName,
-      lastName: form.value.lastName,
-      email: form.value.email,
-      phoneNumber: form.value.phoneNumber,
-      addPhoneNumber: form.value.addPhoneNumber,
-      address: form.value.address,
-      state: form.value.state,
-      country: "Canada",
-      city: form.value.city,
-      postalCode: form.value.postalCode,
-      addDetails: form.value.addDetails,
-      serviceReq: this.selectedScheduleService,
-      squareFootageOfProp: this.selectedSquareFootageOfProperty,
-      subscribtion: this.subscriptionCheckbox,
-      promoCode: form.value.promoCode
-    }
-    const myJSON = JSON.stringify(obj);
-    http.send(myJSON);
+    this._scheduleService.sendScheduleServiceData(form.value.firstName, form.value.lastName, form.value.email, form.value.phoneNumber, form.value.addPhoneNumber, form.value.address, form.value.state, "Canada", form.value.city, form.value.postalCode, form.value.addDetails, this.selectedScheduleService, this.selectedSquareFootageOfProperty, this.subscriptionCheckbox,form.value.promoCode).subscribe(
+      res => {
+        setTimeout(() => {
+         
+          this.spinner.hide();
+        }, 1000);
+        this._toast.success({ detail: "SUCCESS", summary: 'Form successfully submitted', position: 'br' });
+        setTimeout(function () {
+          window.location.href = '/thank-you'
+        }, 1000);
+
+      },
+      err => {
+        this._toast.warning({ detail: " FAILED", summary: 'Please try after sometime', position: 'br' });
+
+      }, () => console.log("SCHEDULE FORM SUMBITTED SUCCESSFULLY"))
   }
 
 
