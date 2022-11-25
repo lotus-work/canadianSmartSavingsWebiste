@@ -13,17 +13,16 @@ import { ScheduleServicesService } from 'src/app/services/schedule-services.serv
 export class ScheduleServiceComponent implements OnInit {
 
   getAQuoteServicesReq = [
-    { id: 1, label: "New Account Setup", status: true },
-    { id: 2, label: "Heating", status: false },
-    { id: 3, label: "Cooling", status: false },
-    { id: 4, label: "Water Heaters", status: false },
-    { id: 5, label: "Tankless", status: false },
-    { id: 6, label: "Home Inspection", status: false },
-    { id: 7, label: "Energy Audit", status: false },
-    { id: 8, label: 'HVAC Maint. / Repair', status: false },
-    { id: 9, label: "Chimney Lining", status: false },
-    { id: 10, label: "Duct Cleaning", status: false },
-    { id: 11, label: "Other", status: false },
+    { id: 1, label: "Heating", status: true },
+    { id: 2, label: "Cooling", status: false },
+    { id: 3, label: "Water Heaters", status: false },
+    { id: 4, label: "Tankless", status: false },
+    { id: 5, label: "Home Inspection", status: false },
+    { id: 6, label: "Energy Audit", status: false },
+    { id: 7, label: 'HVAC Maint. / Repair', status: false },
+    { id: 8, label: "Chimney Lining", status: false },
+    { id: 9, label: "Duct Cleaning", status: false },
+    { id: 10, label: "Other", status: false },
   ];
 
   scheduleService = [
@@ -83,26 +82,26 @@ export class ScheduleServiceComponent implements OnInit {
     console.log(form.value);
     console.log(this.selectedServiceRequiredGetQuote);
     if (this.selectedServiceRequiredGetQuote == '') {
-      this.selectedServiceRequiredGetQuote = 'New Account Setup';
+      this.selectedServiceRequiredGetQuote = 'Heating';
     }
     this.spinner.show();
 
-    this._scheduleService.sendGetQuoteData(form.value.yourName, form.value.email, form.value.phoneNumber, form.value.postalCode, form.value.addDetails, this.selectedServiceRequiredGetQuote).subscribe(
-      res => {
-        setTimeout(() => {
+    // this._scheduleService.sendGetQuoteData(form.value.yourName, form.value.email, form.value.phoneNumber, form.value.postalCode, form.value.addDetails, this.selectedServiceRequiredGetQuote).subscribe(
+    //   res => {
+    //     setTimeout(() => {
          
-          this.spinner.hide();
-        }, 1000);
-        this._toast.success({ detail: "SUCCESS", summary: 'Form successfully submitted', position: 'br' });
-        setTimeout(function () {
-          window.location.href = '/thank-you'
-        }, 1000);
+    //       this.spinner.hide();
+    //     }, 1000);
+    //     this._toast.success({ detail: "SUCCESS", summary: 'Form successfully submitted', position: 'br' });
+    //     setTimeout(function () {
+    //       window.location.href = '/thank-you'
+    //     }, 1000);
 
-      },
-      err => {
-        this._toast.warning({ detail: " FAILED", summary: 'Please try after sometime', position: 'br' });
+    //   },
+    //   err => {
+    //     this._toast.warning({ detail: " FAILED", summary: 'Please try after sometime', position: 'br' });
 
-      }, () => console.log("QUOTE FORM SUMBITTED SUCCESSFULLY"))
+    //   }, () => console.log("QUOTE FORM SUMBITTED SUCCESSFULLY"))
   }
 
   scheduleServiceFormData(form: NgForm) {
@@ -124,22 +123,22 @@ export class ScheduleServiceComponent implements OnInit {
       this.selectedSquareFootageOfProperty = 'Less than 1000 sq. ft.';
     }
 
-    this._scheduleService.sendScheduleServiceData(form.value.firstName, form.value.lastName, form.value.email, form.value.phoneNumber, form.value.addPhoneNumber, form.value.address, form.value.state, "Canada", form.value.city, form.value.postalCode, form.value.addDetails, this.selectedScheduleService, this.selectedSquareFootageOfProperty, this.subscriptionCheckbox,form.value.promoCode).subscribe(
-      res => {
-        setTimeout(() => {
+    // this._scheduleService.sendScheduleServiceData(form.value.firstName, form.value.lastName, form.value.email, form.value.phoneNumber, form.value.addPhoneNumber, form.value.address, form.value.state, "Canada", form.value.city, form.value.postalCode, form.value.addDetails, this.selectedScheduleService, this.selectedSquareFootageOfProperty).subscribe(
+    //   res => {
+    //     setTimeout(() => {
          
-          this.spinner.hide();
-        }, 1000);
-        this._toast.success({ detail: "SUCCESS", summary: 'Form successfully submitted', position: 'br' });
-        setTimeout(function () {
-          window.location.href = '/thank-you'
-        }, 1000);
+    //       this.spinner.hide();
+    //     }, 1000);
+    //     this._toast.success({ detail: "SUCCESS", summary: 'Form successfully submitted', position: 'br' });
+    //     setTimeout(function () {
+    //       window.location.href = '/thank-you'
+    //     }, 1000);
 
-      },
-      err => {
-        this._toast.warning({ detail: " FAILED", summary: 'Please try after sometime', position: 'br' });
+    //   },
+    //   err => {
+    //     this._toast.warning({ detail: " FAILED", summary: 'Please try after sometime', position: 'br' });
 
-      }, () => console.log("SCHEDULE FORM SUMBITTED SUCCESSFULLY"))
+    //   }, () => console.log("SCHEDULE FORM SUMBITTED SUCCESSFULLY"))
   }
 
 

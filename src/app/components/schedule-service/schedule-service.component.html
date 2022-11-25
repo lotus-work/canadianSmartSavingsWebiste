@@ -1,13 +1,12 @@
 <section class="schedule-services">
     <div class="container">
-        <div class="row">
+        <div class="row"> 
             <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
                 <div class="row">
                     <div class="col-12">
                         <div class="header-section">
                             <h3 class="title">Schedule Service</h3>
                             <hr>
-
                         </div>
                         <div class="schedule-services-form p-3">
                             <form #scheduleServiceForm="ngForm"
@@ -17,6 +16,41 @@
                                     and be sure that your
                                     request will be processed promptly and you will hear back from us shortly.</p>
                                 <div class="row g-3">
+
+                                    <div>
+                                        <div class="col-sm-12">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-12">
+                                                    <div class="form-floating mb-3">
+                                                        <select class="form-select " name="serviceReq"
+                                                            id="floatingSelect"
+                                                            aria-label="Floating label select example" required=""
+                                                            (change)="selectChangeHandler2($event)">
+                                                            <option *ngFor="let opt of this.scheduleService"
+                                                                [value]="opt.label" [selected]="opt.status == true">
+                                                                {{opt.label}}</option>
+                                                        </select>
+                                                        <label for="floatingSelect">Service(s) Required</label>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-sm-6 col-12">
+                                                    <div class="form-floating mb-3">
+                                                        <select class="form-select " name="serviceReq"
+                                                            id="floatingSelect"
+                                                            aria-label="Floating label select example" required=""
+                                                            (change)="selectChangeHandler3($event)">
+                                                            <option *ngFor="let opt of this.squareFootageOfProp"
+                                                                [value]="opt.label" [selected]="opt.status == true">
+                                                                {{opt.label}}</option>
+                                                        </select>
+                                                        <label for="floatingSelect">Square Footage of Property</label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-sm-6 ">
 
                                         <div class="row">
@@ -79,15 +113,15 @@
                                     <div class="col-sm-6">
                                         <div class="form-floating mb-3">
                                             <input type="tel" class="form-control" id="floatingInput"
-                                               name="addPhoneNumber" ngModel>
+                                                name="addPhoneNumber" ngModel>
                                             <label for="floatingInput">Addl. Phone Number</label>
                                         </div>
-                                       
+
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-floating mb-3">
                                             <input type="text" class="form-control" id="floatingInput" name="address"
-                                               #addressRef="ngModel" ngModel required="">
+                                                #addressRef="ngModel" ngModel required="">
                                             <label for="floatingInput">Address</label>
                                         </div>
                                         <div *ngIf="addressRef.errors && (addressRef.dirty || addressRef.touched)"
@@ -102,86 +136,55 @@
                                             <div class="col-sm-6 col-12">
                                                 <div class="form-floating mb-3">
                                                     <input type="text" class="form-control" id="floatingInput"
-                                                     #postalCodeRef="ngModel"   name="postalCode" ngModel required="">
+                                                        #postalCodeRef="ngModel" name="postalCode" ngModel required="">
                                                     <label for="floatingInput">Postal Code</label>
                                                 </div>
                                                 <div *ngIf="postalCodeRef.errors && (postalCodeRef.dirty || postalCodeRef.touched)"
-                                                style="text-align:left; color:red;">
-                                                <div [hidden]="!postalCodeRef.errors">
-                                                    <p>&nbsp;Postal Code is mandatory</p>
+                                                    style="text-align:left; color:red;">
+                                                    <div [hidden]="!postalCodeRef.errors">
+                                                        <p>&nbsp;Postal Code is mandatory</p>
+                                                    </div>
                                                 </div>
-                                            </div>
                                             </div>
                                             <div class="col-sm-6 col-12">
                                                 <div class="form-floating mb-3">
                                                     <input type="text" class="form-control" id="floatingInput"
-                                                      #cityRef="ngModel"  name="city" ngModel required="">
+                                                        #cityRef="ngModel" name="city" ngModel required="">
                                                     <label for="floatingInput">City</label>
                                                 </div>
                                                 <div *ngIf="cityRef.errors && (cityRef.dirty || cityRef.touched)"
-                                                style="text-align:left; color:red;">
-                                                <div [hidden]="!cityRef.errors">
-                                                    <p>&nbsp;City is mandatory</p>
+                                                    style="text-align:left; color:red;">
+                                                    <div [hidden]="!cityRef.errors">
+                                                        <p>&nbsp;City is mandatory</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            </div>
-                                          
+
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-floating mb-3">
                                             <input type="text" class="form-control" id="floatingInput"
-                                               #stateRef="ngModel" name="state" ngModel required="">
+                                                #stateRef="ngModel" name="state" ngModel required="">
                                             <label for="floatingInput">Province</label>
                                         </div>
                                         <div *ngIf="stateRef.errors && (stateRef.dirty || stateRef.touched)"
-                                        style="text-align:left; color:red;">
-                                        <div [hidden]="!stateRef.errors">
-                                            <p>&nbsp;Province is mandatory</p>
+                                            style="text-align:left; color:red;">
+                                            <div [hidden]="!stateRef.errors">
+                                                <p>&nbsp;Province is mandatory</p>
+                                            </div>
                                         </div>
-                                    </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-floating mb-3">
                                             <select class="form-select " name="country" id="floatingSelect"
-                                                aria-label="Floating label select example" required=""
-                                                 disabled>
-                                                <option value="Canada" >Canada</option>
+                                                aria-label="Floating label select example" required="" disabled>
+                                                <option value="Canada">Canada</option>
                                             </select>
                                             <label for="floatingSelect">Country</label>
                                         </div>
                                     </div>
-                                  
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-12">
-                                                <div class="form-floating mb-3">
-                                                    <select class="form-select " name="serviceReq" id="floatingSelect"
-                                                        aria-label="Floating label select example" required=""
-                                                        (change)="selectChangeHandler2($event)">
-                                                        <option *ngFor="let opt of this.scheduleService"
-                                                            [value]="opt.label" [selected]="opt.status == true">
-                                                            {{opt.label}}</option>
-                                                    </select>
-                                                    <label for="floatingSelect">Service(s) Required</label>
-                                                </div>
 
-                                            </div>
-                                            <div class="col-sm-6 col-12">
-                                                <div class="form-floating mb-3">
-                                                    <select class="form-select " name="serviceReq" id="floatingSelect"
-                                                        aria-label="Floating label select example" required=""
-                                                        (change)="selectChangeHandler3($event)">
-                                                        <option *ngFor="let opt of this.squareFootageOfProp"
-                                                            [value]="opt.label" [selected]="opt.status == true">
-                                                            {{opt.label}}</option>
-                                                    </select>
-                                                    <label for="floatingSelect">Square Footage of Property</label>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="col-sm-12">
                                         <div class="form-floating">
                                             <textarea class="form-control" placeholder="Leave a comment here"
@@ -190,7 +193,7 @@
                                             <label for="floatingTextarea2">Details / Comments</label>
                                         </div>
                                     </div>
-                                    <div class="col-xl-4 col-sm-12 col-12">
+                                    <!-- <div class="col-xl-4 col-sm-12 col-12">
                                         <div class="form-floating mb-3">
                                             <input type="text" class="form-control" id="floatingInput" name="promoCode"
                                                 ngModel>
@@ -210,11 +213,12 @@
                                                 participate in these opportunities.
                                             </label>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <hr class="my-4">
 
-                                <button type="submit" class="btn btn-vary1" [disabled]="!scheduleServiceForm.form.valid">Submit</button>
+                                <button type="submit" class="btn btn-vary1"
+                                    [disabled]="!scheduleServiceForm.form.valid">Submit</button>
                             </form>
                         </div>
                     </div>

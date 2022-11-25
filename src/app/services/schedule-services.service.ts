@@ -21,7 +21,7 @@ export class ScheduleServicesService {
     }).pipe(catchError(this.errorHandler));
   }
 
-  sendScheduleServiceData( firstName: string,  lastName: string, email: string, phoneNumber: string, addPhoneNumber: string,state: string,country: string,city: string,address: string,postalCode: string,addDetails: string,serviceReq: string, squareFootageOfProp: string,subscribtion: string,promoCode: string): Observable<boolean> {
+  sendScheduleServiceData( firstName: string,  lastName: string, email: string, phoneNumber: string, addPhoneNumber: string,state: string,country: string,city: string,address: string,postalCode: string,addDetails: string,serviceReq: string, squareFootageOfProp: string): Observable<boolean> {
     return this.http.post<boolean>("https://thebackend-weekend.herokuapp.com/canadian-smart-savings/schedule-service", {
       firstName: firstName,
       lastName: lastName,
@@ -35,10 +35,13 @@ export class ScheduleServicesService {
       postalCode: postalCode,
       addDetails: addDetails,
       serviceReq: serviceReq,
-      squareFootageOfProp: squareFootageOfProp,
-      subscribtion: subscribtion,
-      promoCode: promoCode
+      squareFootageOfProp: squareFootageOfProp
     }).pipe(catchError(this.errorHandler));
+  }
+
+  findPostalCodeAddress(postalCode: string)
+  {
+    return  this.http.get<any>("https://geocoder.ca/" + postalCode + "?json=1").pipe(catchError(this.errorHandler));
   }
   errorHandler(error: HttpErrorResponse){
     console.error(error);

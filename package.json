@@ -22,6 +22,7 @@
     "axios-observable": "^1.5.0",
     "ng-angular-popup": "^0.2.0",
     "ngx-google-places-autocomplete": "^2.0.5",
+    "ngx-smart-popover": "^1.5.0",
     "ngx-spinner": "^14.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

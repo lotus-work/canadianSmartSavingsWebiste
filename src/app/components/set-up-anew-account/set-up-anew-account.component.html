@@ -1,0 +1,265 @@
+<app-navbar></app-navbar>
+<section class="container set-up-a-new-account mt-3">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-10 col-md-10 col-sm-11 col-11">
+      <div class="header-section">
+        <h3 class="title">NEW ACCOUNT</h3>
+        <hr>
+        <div class="progress">
+          <div class="progress-bar bg-success" role="progressbar" id="progress-bar" attr.aria-valuenow="{{this.progressWidth}}"
+            aria-valuemin="0" aria-valuemax="100">{{this.progressWidth}}%</div>
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <p class="fs-5 text-muted">Step {{step}} of 2</p>
+
+      </div>
+
+      <div>
+        <div class="new-account-form p-3">
+          <div class="form-1" *ngIf="isVisible; else elseBlock">
+            <form action="">
+              <div class="row g-3">
+                <div class="col-sm-12">
+                  <p class="fs-5">Buying or Renting</p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Buying
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Renting
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-12 ">
+                  <div class="row">
+                    <p class="fs-5">New Address</p>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 ">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" name="postalCode"
+                          #postalCodeRef="ngModel" [(ngModel)]="postalCode" required="">
+                        <label for="floatingInput">Enter your postal code</label>
+
+                      </div>
+                      <div *ngIf="postalCodeRef.errors && (postalCodeRef.dirty || postalCodeRef.touched)"
+                        style="text-align:left; color:red;">
+                        <div [hidden]="!postalCodeRef.errors">
+                          <p>&nbsp;Postal Code is mandatory</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 ">
+                      <button class="btn btn-dark" (click)="findAddress(postalCodeRef.value)" [disabled]="!postalCode">Find Address</button>
+                    </div>
+                  </div>
+
+                  <div>
+
+                  </div>
+                </div>
+                <div *ngIf="postalAddFound == true">
+                  <p class="fs-5">Fill out all deatils</p>
+                   
+                  <div class="col-sm-6 col-12">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="floatingInput" #adressRef="ngModel" name="adress" ngModel
+                        required="" >
+                      <label for="floatingInput">Address</label>
+                    </div>
+                    <div *ngIf="adressRef.errors && (adressRef.dirty || adressRef.touched)"
+                      style="text-align:left; color:red;">
+                      <div [hidden]="!adressRef.errors">
+                        <p>&nbsp;Address is mandatory</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-12">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="floatingInput" #cityRef="ngModel" name="city" ngModel
+                        required="" [(ngModel)]="this.getPinCodeCity">
+                      <label for="floatingInput">City</label>
+                    </div>
+                    <div *ngIf="cityRef.errors && (cityRef.dirty || cityRef.touched)"
+                      style="text-align:left; color:red;">
+                      <div [hidden]="!cityRef.errors">
+                        <p>&nbsp;City is mandatory</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="floatingInput" #stateRef="ngModel" name="state"
+                        ngModel required="" [(ngModel)]="this.getPinCodeProvince">
+                      <label for="floatingInput">Province</label>
+                    </div>
+                    <div *ngIf="stateRef.errors && (stateRef.dirty || stateRef.touched)"
+                      style="text-align:left; color:red;">
+                      <div [hidden]="!stateRef.errors">
+                        <p>&nbsp;Province is mandatory</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="postalAddError == true">
+                  <p class="" style="color: red; "> Wrong Pincode. Try Again !</p>
+                </div>
+
+
+                <div class="col-sm-6">
+                  <p class="fs-5">When did you take ownership or start your leave ?</p>
+
+                  <input type="date" class="form-control" id="floatingInput" id="birthday" name="birthday">
+                </div>
+              </div>
+              <hr class="my-4">
+
+              <button type="submit" class="btn btn-vary1" (click)="showNext()">Next</button>
+            </form>
+
+          </div>
+          <ng-template #elseBlock>
+            <div class="form-2">
+              <form action="">
+                <div class="row g-3">
+                  <div class="col-sm-12">
+                    <p class="fs-5">Service Type</p>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        Residential
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                        checked>
+                      <label class="form-check-label" for="flexRadioDefault2">
+                        Business
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-12 ">
+                    <p class="fs-5">First Name</p>
+                    <div class="mb-3">
+
+                      <input type="text" class="form-control" name="firstName" #firstNameRef="ngModel" ngModel
+                        required="">
+
+                    </div>
+                    <div *ngIf="firstNameRef.errors && (firstNameRef.dirty || firstNameRef.touched)"
+                      style="text-align:left; color:red;">
+                      <div [hidden]="!firstNameRef.errors">
+                        <p>&nbsp;First Name is mandatory</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-12">
+                    <p class="fs-5">Last Name</p>
+                    <div class="mb-3">
+
+                      <input type="text" class="form-control" name="lastName" #lastNameRef="ngModel" ngModel
+                        required="">
+
+                    </div>
+                    <div *ngIf="lastNameRef.errors && (lastNameRef.dirty || lastNameRef.touched)"
+                      style="text-align:left; color:red;">
+                      <div [hidden]="!lastNameRef.errors">
+                        <p>&nbsp;Last Name is mandatory</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <p class="fs-5">Email Address</p>
+                    <div class=" mb-3">
+                      <input type="email" class="form-control" name="email" #emailAddressRef="ngModel" ngModel
+                        required="" placeholder="name@example.com">
+                    </div>
+                    <div *ngIf="emailAddressRef.errors && (emailAddressRef.dirty || emailAddressRef.touched)"
+                      style="text-align:left; color:red;">
+                      <div [hidden]="!emailAddressRef.errors">
+                        <p>&nbsp;Email Address is mandatory</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <p class="fs-5">Phone Number</p>
+                    <div class="mb-3">
+
+                      <input type="tel" class="form-control" name="phoneNumber" #phoneNumberRef="ngModel" ngModel
+                        required="">
+
+                    </div>
+                    <div *ngIf="phoneNumberRef.errors && (phoneNumberRef.dirty || phoneNumberRef.touched)"
+                      style="text-align:left; color:red;">
+                      <div [hidden]="!phoneNumberRef.errors">
+                        <p>&nbsp;Phone is mandatory</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <p class="fs-5">Date of Birth</p>
+
+                    <input type="date" class="form-control" id="floatingInput" id="birthday" name="birthday">
+                  </div>
+                  <div class="col-sm-12 ">
+                    <div class="row">
+                      <div class="col-lg-6 col-md-6 col-sm-12 col-12 ">
+                        <div class="d-flex">
+                          <p class="fs-5">Additional name on this account </p>
+
+                          <div popover="Use this field to add a spouse, roommate or other trusted party to have access this account."
+                            popoverPlacement="top" [popoverOnHover]="false" [popoverCloseOnClickOutside]="true"
+                            [popoverCloseOnMouseOutside]="false" [popoverDisabled]="false" [popoverAnimation]="true"
+                            [popoverDismissTimeout]="5000">
+                            <i class="fa fa-question-circle ms-3 fs-3" ></i>
+                          </div>
+                        </div>
+
+                        <div class="mb-3">
+
+                          <input type="text" class="form-control" name="addName" #addNameRef="ngModel" ngModel
+                            required="">
+
+                        </div>
+                        <div *ngIf="addNameRef.errors && (addNameRef.dirty || addNameRef.touched)"
+                          style="text-align:left; color:red;">
+                          <div [hidden]="!addNameRef.errors">
+                            <p>&nbsp;Additional name is mandatory</p>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div>
+
+                    </div>
+                  </div>
+
+                </div>
+                <hr class="my-4">
+                <div>
+                  <button type="submit" class="btn btn-dark me-2" (click)="showPre()">Previous</button>
+                  <a href="success-new-account" class="btn btn-success">Submit</a>
+                  <!-- <button type="submit" class="btn btn-success">Submit</button> -->
+                </div>
+              </form>
+
+
+
+            </div>
+          </ng-template>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
