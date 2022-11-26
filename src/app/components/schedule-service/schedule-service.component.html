@@ -1,6 +1,6 @@
 <section class="schedule-services">
     <div class="container">
-        <div class="row"> 
+        <div class="row">
             <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
                 <div class="row">
                     <div class="col-12">
@@ -55,10 +55,11 @@
 
                                         <div class="row">
                                             <div class="col-sm-6 col-12 ">
-                                                <div class="form-floating mb-3">
+                                                <div class=" mb-3">
+                                                    <p>First Name</p>
                                                     <input type="text" class="form-control" id="floatingInput"
                                                         name="firstName" #firstNameRef="ngModel" ngModel required="">
-                                                    <label for="floatingInput">First Name</label>
+
                                                 </div>
                                                 <div *ngIf="firstNameRef.errors && (firstNameRef.dirty || firstNameRef.touched)"
                                                     style="text-align:left; color:red;">
@@ -68,10 +69,11 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-12">
-                                                <div class="form-floating mb-3">
+                                                <div class=" mb-3">
+                                                    <p>Last Name</p>
                                                     <input type="text" class="form-control" id="floatingInput"
                                                         name="lastName" #lastNameRef="ngModel" ngModel required="">
-                                                    <label for="floatingInput">Last Name</label>
+
                                                 </div>
                                                 <div *ngIf="lastNameRef.errors && (lastNameRef.dirty || lastNameRef.touched)"
                                                     style="text-align:left; color:red;">
@@ -84,10 +86,11 @@
 
                                     </div>
                                     <div class="col-sm-6">
-                                        <div class="form-floating mb-3">
+                                        <div class="mb-3">
+                                            <p>Email Address</p>
                                             <input type="email" class="form-control" id="floatingInput" name="email"
                                                 #emailAddressRef="ngModel" ngModel required="">
-                                            <label for="floatingInput">Email Address</label>
+
                                         </div>
                                         <div *ngIf="emailAddressRef.errors && (emailAddressRef.dirty || emailAddressRef.touched)"
                                             style="text-align:left; color:red;">
@@ -98,10 +101,11 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <div class="form-floating mb-3">
-                                            <input type="tel" class="form-control" id="floatingInput" name="phoneNumber"
-                                                #phoneNumberRef="ngModel" ngModel required="">
-                                            <label for="floatingInput">Phone</label>
+                                        <div class="mb-3">
+                                            <p>Phone</p>
+                                            <input type="tel" class="form-control" name="phoneNumber" id="phoneNumber"
+                                                #phoneNumberRef="ngModel" ngModel required=""
+                                                [inputMask]="phoneNumberInputMask">
                                         </div>
                                         <div *ngIf="phoneNumberRef.errors && (phoneNumberRef.dirty || phoneNumberRef.touched)"
                                             style="text-align:left; color:red;">
@@ -111,18 +115,23 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
-                                        <div class="form-floating mb-3">
-                                            <input type="tel" class="form-control" id="floatingInput"
-                                                name="addPhoneNumber" ngModel>
-                                            <label for="floatingInput">Addl. Phone Number</label>
+                                        <div class="mb-3">
+                                            <p>Addl. Phone Number</p>
+
+                                            <input type="tel" class="form-control" name="addPhoneNumber"
+                                                id="addPhoneNumber" #addPhoneNumberRef="ngModel" ngModel
+                                                [inputMask]="addPhoneNumberInputMask">
                                         </div>
 
                                     </div>
                                     <div class="col-sm-12">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingInput" name="address"
-                                                #addressRef="ngModel" ngModel required="">
-                                            <label for="floatingInput">Address</label>
+                                        <div class="mb-3">
+                                            <p>Address</p>
+                                            <input class="form-control" id="floatingInput"
+                                                ngx-google-places-autocomplete [options]="options"
+                                                (onAddressChange)="handleAddressChange($event)" name="address"
+                                                #addressRef="ngModel" ngModel required="" />
+
                                         </div>
                                         <div *ngIf="addressRef.errors && (addressRef.dirty || addressRef.touched)"
                                             style="text-align:left; color:red;">
@@ -131,7 +140,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-12">
+                                    <!-- <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-sm-6 col-12">
                                                 <div class="form-floating mb-3">
@@ -183,14 +192,15 @@
                                             </select>
                                             <label for="floatingSelect">Country</label>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="col-sm-12">
-                                        <div class="form-floating">
+                                        <div class="">
+                                            <p>Details / Comments</p>
                                             <textarea class="form-control" placeholder="Leave a comment here"
                                                 name="addDetails" id="floatingTextarea2" style="height: 100px"
                                                 ngModel></textarea>
-                                            <label for="floatingTextarea2">Details / Comments</label>
+
                                         </div>
                                     </div>
                                     <!-- <div class="col-xl-4 col-sm-12 col-12">
@@ -270,9 +280,10 @@
                                     <div class="col-sm-12 ">
 
                                         <div class="form-floating mb-3">
-                                            <input type="tel" class="form-control" id="floatingInput" name="phoneNumber"
-                                                #phoneNumberRef="ngModel" ngModel required />
 
+                                            <input type="tel" class="form-control" name="phoneNumber" id="phoneNumber"
+                                                #phoneNumberRef="ngModel" ngModel
+                                                [inputMask]="quotePhoneNumberInputMask" required>
                                             <label for="floatingInput">Phone Number</label>
                                         </div>
                                         <div *ngIf="phoneNumberRef.errors && (phoneNumberRef.dirty || phoneNumberRef.touched)"

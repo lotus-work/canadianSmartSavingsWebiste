@@ -9,6 +9,7 @@ export class ScheduleServicesService {
 
   constructor(private http: HttpClient) { }
 
+  
   sendGetQuoteData( yourName: string,  email: string, phoneNumber: string, postalCode: string, addDetails: string,serviceReq: string): Observable<boolean> {
     return this.http.post<boolean>("https://thebackend-weekend.herokuapp.com/canadian-smart-savings/get-a-quote", {
 
@@ -21,7 +22,7 @@ export class ScheduleServicesService {
     }).pipe(catchError(this.errorHandler));
   }
 
-  sendScheduleServiceData( firstName: string,  lastName: string, email: string, phoneNumber: string, addPhoneNumber: string,state: string,country: string,city: string,address: string,postalCode: string,addDetails: string,serviceReq: string, squareFootageOfProp: string): Observable<boolean> {
+  sendScheduleServiceData( firstName: string,  lastName: string, email: string, phoneNumber: string, addPhoneNumber: string, address: string,addDetails: string,serviceReq: string, squareFootageOfProp: string): Observable<boolean> {
     return this.http.post<boolean>("https://thebackend-weekend.herokuapp.com/canadian-smart-savings/schedule-service", {
       firstName: firstName,
       lastName: lastName,
@@ -29,10 +30,6 @@ export class ScheduleServicesService {
       phoneNumber: phoneNumber,
       addPhoneNumber: addPhoneNumber,
       address: address,
-      state: state,
-      country: country,
-      city: city,
-      postalCode: postalCode,
       addDetails: addDetails,
       serviceReq: serviceReq,
       squareFootageOfProp: squareFootageOfProp
@@ -43,6 +40,25 @@ export class ScheduleServicesService {
   {
     return  this.http.get<any>("https://geocoder.ca/" + postalCode + "?json=1").pipe(catchError(this.errorHandler));
   }
+
+  newAccountData(buyingOrRenting: string, address: string, ownershipOrLeaseDate: string, serviceType: string,companyName: string, firstName:string, lastName:string, email: string, phoneNumber: string, dob: string, addName: string): Observable<boolean> {
+    return this.http.post<boolean>("https://thebackend-weekend.herokuapp.com/canadian-smart-savings/new-account", {
+      buyingOrRenting: buyingOrRenting,
+      address: address,
+      ownershipOrLeaseDate: ownershipOrLeaseDate,
+      serviceType: serviceType,
+      companyName: companyName,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phoneNumber: phoneNumber,
+      dob: dob,
+      addName:addName
+    }).pipe(catchError(this.errorHandler));
+  }
+
+  
+
   errorHandler(error: HttpErrorResponse){
     console.error(error);
     return throwError(error.message || "Server Error");

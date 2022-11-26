@@ -8,7 +8,23 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class OnSubmitNewAccountComponent implements OnInit {
 
-  constructor(private spinner: NgxSpinnerService) { }
+  firstName: string = "";
+  lastName: string = "";
+  email: string = "";
+  phone: string = "";
+  address: string ="";
+  ownerShipOrLeaseDate: string = ""
+  
+  constructor(private spinner: NgxSpinnerService) { 
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString); 
+    this.firstName = String(urlParams.get('firstName'));
+    this.lastName = String(urlParams.get('lastName'));
+    this.email = String(urlParams.get('email'));
+    this.phone = String(urlParams.get('phoneNumber'));
+    this.address = String(urlParams.get('address'));
+    this.ownerShipOrLeaseDate = String(urlParams.get('ownerShipOrLeaseDate'));
+  }
 
   ngOnInit(): void {
     this.spinner.show();

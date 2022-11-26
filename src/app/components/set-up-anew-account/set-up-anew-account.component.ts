@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { createMask } from '@ngneat/input-mask';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ScheduleServicesService } from 'src/app/services/schedule-services.service';
+import { Options } from 'ngx-google-places-autocomplete/objects/options/options';
+
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { NgForm } from '@angular/forms';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-set-up-anew-account',
@@ -8,46 +14,58 @@ import { ScheduleServicesService } from 'src/app/services/schedule-services.serv
   styleUrls: ['./set-up-anew-account.component.css']
 })
 export class SetUpANewAccountComponent implements OnInit {
-  isVisible: boolean = true;
+
+
+  options: any = {
+    componentRestrictions: { country: 'CA' }
+  }
+
+  isVisibleForm1: boolean = true;
+  isVisibleForm2: boolean = false;
   progressWidth: number = 50;
   step: number = 1;
-  postalCodeRes: any = [];
-  postalAddFound: boolean = false;
-  postalAddError: boolean = false;
 
-  getPinCodeCity: string = "";
-  getPinCodeProvince: string = "";
 
-  // 
-  postalCode : string ="";
+  //
 
-  provinceCanada = [
-    { id: 1, label: "Alberta", code: "AB" },
-    { id: 2, label: "British Columbia", code: "BC"  },
-    { id: 3, label: "Manitoba", code: "MB"  },
-    { id: 4, label: "New Brunswick", code: "NB"  },
-    { id: 5, label: "Newfoundland and Labrador", code: "NL"  },
-    { id: 6, label: "Nova Scotia", code: "NS"  },
-    { id: 7, label: "Ontario", code: "ON"  },
-    { id: 8, label: "Prince Edward Island", code: "PE"  },
-    { id: 9, label: "Quebec", code: "QC"  },
-    { id: 10, label: "Saskatchewan", code: "SK"  },
-    { id: 11, label: "Northwest Territories", code: "NT"  },
-    { id: 12, label: "Nunavut", code: "NU"  },
-    { id: 13, label: "Yukon", code: "YT"  }
-  ];
-  constructor(private _postalCodeApi: ScheduleServicesService,private spinner: NgxSpinnerService) { }
+  phoneNumberInputMask = createMask({
+    mask: '(999) 999-9999',
+  });
+  
+  selectedServiceType: string = "Residential";
+  serviceType: string[] = ['Residential', 'Business'];
+
+  selectedBuyingOrRenting: string = "Buying";
+  buyingOrRenting: string[] = ['Buying', 'Renting'];
+
+  fullAddress: string = "";
+  ownershipOrLeaseDate : string ="";
+  firstName : string = "";
+  lastName : string = "";
+  email : string = "";
+  phone : string = "";
+  dob : string = "";
+  addName : string = "";
+  company: string = "";
+  constructor(private _scheduleService: ScheduleServicesService, private spinner: NgxSpinnerService, private _toast: NgToastService) { }
 
   ngOnInit(): void {
-    console.log(this.postalCodeRes);
     this.spinner.show();
 
     setTimeout(() => {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
     }, 2000);
+
   }
-  
+  handleAddressChange(address: Address) {
+    this.fullAddress = address.formatted_address;
+    // console.log(address.formatted_address)
+    // console.log(address.geometry.location.lat())
+    // console.log(address.geometry.location.lng())
+    // console.log(address.address_components)
+
+  }
   showPre() {
     const bar = document.getElementById('progress-bar');
 
@@ -56,7 +74,8 @@ export class SetUpANewAccountComponent implements OnInit {
     }
     this.progressWidth = 50;
     this.step = 1;
-    this.isVisible = true;
+    this.isVisibleForm1 = true;
+    this.isVisibleForm2 = false;
   }
   showNext() {
     const bar = document.getElementById('progress-bar');
@@ -66,44 +85,59 @@ export class SetUpANewAccountComponent implements OnInit {
     }
     this.step = 2;
     this.progressWidth = 100;
-    this.isVisible = false;
+    
+    this.isVisibleForm1 = false;
+    this.isVisibleForm2 = true;
   }
 
-  findAddress(postalCode: string) {
+  form1Data(form : NgForm){
+    this.ownershipOrLeaseDate = form.value.ownershipLeaseDate;
+
+  }
+  form2Data(form : NgForm){
     this.spinner.show();
 
-    console.log(postalCode);
-    this._postalCodeApi.findPostalCodeAddress(postalCode).subscribe(
+    this.company = form.value.companyName;
+    this.firstName = form.value.firstName;
+    this.lastName = form.value.lastName;
+    this.email = form.value.email;
+    this.phone = form.value.phoneNumber;
+    this.dob = form.value.dob;
+    this.addName = form.value.addName;
+    
+    console.log(this.selectedBuyingOrRenting);
+    console.log(this.fullAddress);
+    console.log(this.ownershipOrLeaseDate );
+    
+    
+    console.log(this.selectedServiceType);
+    
+    console.log(this.company);
+    console.log(this.firstName );
+    console.log(this.lastName);
+    console.log(this.email);
+    console.log(this.phone);
+    console.log( this.dob);
+    console.log(this.addName );
+
+     this._scheduleService.newAccountData(this.selectedBuyingOrRenting, this.fullAddress, this.ownershipOrLeaseDate, this.selectedServiceType, this.company, this.firstName, this.lastName, this.email, this.phone, this.dob, this.addName).subscribe(
       res => {
         setTimeout(() => {
          
           this.spinner.hide();
         }, 1000);
-        this.postalCodeRes[0] = res;
-       
-        if (!!this.postalCodeRes[0].standard) {
-          this.postalAddFound = true;
-          this.postalAddError = false;
-          this.getPinCodeCity = this.postalCodeRes[0].standard.city;
-         
-         
-          for(var i=0;i<this.provinceCanada.length;i++)
-          {
-            if(this.provinceCanada[i].code == this.postalCodeRes[0].standard.prov)
-            {
-              this.getPinCodeProvince = this.provinceCanada[i].label;
-       
-            }
-          }
-        }
-        else{
-          this.postalAddError = true;
-          this.postalAddFound = false;
-        }
-        },
+        this._toast.success({ detail: "SUCCESS", summary: 'Form successfully submitted', position: 'br' });
+        setTimeout( () => {
+          window.location.href ="/success-new-account?firstName=" + this.firstName + "&lastName=" + this.lastName+ "&email=" + this.email + "&phoneNumber=" + this.phone + "&address=" + this.fullAddress + "&ownerShipOrLeaseDate=" + this.ownershipOrLeaseDate;
+        }, 1000);
+
+      },
       err => {
-         alert("ERROR IN DATA FETCH");
-      })
+        this._toast.warning({ detail: " FAILED", summary: 'Please try after sometime', position: 'br' });
+
+      }, () => console.log("NEW Account FORM SUMBITTED SUCCESSFULLY"))
+
+
   }
 
 }

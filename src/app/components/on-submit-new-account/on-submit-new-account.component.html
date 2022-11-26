@@ -5,7 +5,7 @@
         <div class="col-lg-10 col-md-10 col-sm-12 col-12">
             <div class="header-section">
                 <h3 class="title">NEW ACCOUNT</h3>
-                <p class="fs-5">Confirmation</p>
+                <p class="fs-1">Confirmation</p>
                 <hr>
             </div>
             <div>
@@ -28,10 +28,7 @@
                     </div>
                   </div>
             </div>
-            <div class="border you-r-moving" style="padding: 16px; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-                <p class="fs-4">You're Moving</p>
-                <p>When moving to a new property, you’ll see a one-time, New Account Charge on your first bill. This charge covers the cost of your account set up.</p>
-            </div>
+          
             <div class="border my-3 your-info" style="padding: 16px;">
                 <div class="row">
                     <div class="col-lg-3 text-center my-auto">
@@ -39,9 +36,9 @@
                         <p class="fs-5">Your Information</p>
                     </div>
                     <div class="col-lg-9">
-                        <p>William Parker</p>
-                        <p>Email : williamParker@gmail.com</p>
-                        <p>Phone : (844) 816-9473</p>
+                        <p>{{this.firstName}} {{this.lastName}}</p>
+                        <p>Email : {{this.email}}</p>
+                        <p>Phone : {{this.phone}}</p>
                     </div>
                 </div>
             </div>
@@ -53,8 +50,8 @@
                     </div>
                     <div class="col-lg-9">
                         <p>Service Address</p>
-                        <p>Address : 67 OTTAWA ST S HAMILTON, ON, L8K 2E2 CANADA</p>
-                        <p>On : 3rd June 2022</p>
+                        <p>Address : {{this.address}}</p>
+                        <p>On : {{this.ownerShipOrLeaseDate}}</p>
                     </div>
                 </div>
             </div>

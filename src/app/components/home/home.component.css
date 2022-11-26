@@ -24,19 +24,21 @@
     opacity: .5;
 }
 
-.home .overlay-text .award img {
+
+.home .overlay-text img {
     /* background: rgba(0, 0, 0, 0.745); */
     background: #fff;
+    padding: 10px;
 }
 
 .home .overlay-text h1 {
     text-transform: uppercase;
     color: white;
-    line-height: 1.1;
+    line-height: 1.4;
     font-weight: normal;
     letter-spacing: 1px;
     font-weight: 900;
-    font-size: 56px;
+    font-size: 46px;
 }
 
 .home .overlay-text h1 span {
@@ -61,7 +63,7 @@
 
 @media (max-width: 480px) {
     .home .overlay-text h1 {
-        font-size: 35px;
+        font-size: 28px;
     }
     .home .overlay-text .subheading {
         font-size: 20px;
@@ -129,12 +131,12 @@ background: rgba(184,180,180,.115);
     font-weight: normal;
     letter-spacing: 1px;
     font-weight: 900;
-    font-size: 56px;
+    font-size: 46px;
 }
 
 @media (max-width: 480px) {
     .set-up-a-new-account-intro h1{
-        font-size: 35px;
+        font-size: 28px;
     }
  
 }
