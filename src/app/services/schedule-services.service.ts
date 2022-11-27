@@ -9,9 +9,11 @@ export class ScheduleServicesService {
 
   constructor(private http: HttpClient) { }
 
+  rootURL1 = "https://backendapi-9fts.onrender.com/";
+  rootURL2 = "https://thebackend-weekend.herokuapp.com/";
   
   sendGetQuoteData( yourName: string,  email: string, phoneNumber: string, postalCode: string, addDetails: string,serviceReq: string): Observable<boolean> {
-    return this.http.post<boolean>("https://thebackend-weekend.herokuapp.com/canadian-smart-savings/get-a-quote", {
+    return this.http.post<boolean>(this.rootURL1 + "canadian-smart-savings/get-a-quote", {
 
       yourName:yourName,
       email:email,
@@ -23,7 +25,7 @@ export class ScheduleServicesService {
   }
 
   sendScheduleServiceData( firstName: string,  lastName: string, email: string, phoneNumber: string, addPhoneNumber: string, address: string,addDetails: string,serviceReq: string, squareFootageOfProp: string): Observable<boolean> {
-    return this.http.post<boolean>("https://thebackend-weekend.herokuapp.com/canadian-smart-savings/schedule-service", {
+    return this.http.post<boolean>(this.rootURL1 + "canadian-smart-savings/schedule-service", {
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -42,7 +44,7 @@ export class ScheduleServicesService {
   }
 
   newAccountData(buyingOrRenting: string, address: string, ownershipOrLeaseDate: string, serviceType: string,companyName: string, firstName:string, lastName:string, email: string, phoneNumber: string, dob: string, addName: string): Observable<boolean> {
-    return this.http.post<boolean>("https://thebackend-weekend.herokuapp.com/canadian-smart-savings/new-account", {
+    return this.http.post<boolean>(this.rootURL1 + "canadian-smart-savings/new-account", {
       buyingOrRenting: buyingOrRenting,
       address: address,
       ownershipOrLeaseDate: ownershipOrLeaseDate,
