@@ -43,7 +43,7 @@ export class ScheduleServicesService {
     return  this.http.get<any>("https://geocoder.ca/" + postalCode + "?json=1").pipe(catchError(this.errorHandler));
   }
 
-  newAccountData(buyingOrRenting: string, address: string, ownershipOrLeaseDate: string, serviceType: string,companyName: string, firstName:string, lastName:string, email: string, phoneNumber: string, dob: string, addName: string): Observable<boolean> {
+  newAccountData(buyingOrRenting: string, address: string, ownershipOrLeaseDate: string, serviceType: string,companyName: string, firstName:string, lastName:string, email: string, phoneNumber: string, dob: string, addName: string, addPhoneNumber: string): Observable<boolean> {
     return this.http.post<boolean>(this.rootURL1 + "canadian-smart-savings/new-account", {
       buyingOrRenting: buyingOrRenting,
       address: address,
@@ -55,7 +55,8 @@ export class ScheduleServicesService {
       email: email,
       phoneNumber: phoneNumber,
       dob: dob,
-      addName:addName
+      addName:addName,
+      addPhoneNumber:addPhoneNumber
     }).pipe(catchError(this.errorHandler));
   }
 

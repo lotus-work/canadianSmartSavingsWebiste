@@ -27,7 +27,7 @@
 
 .home .overlay-text img {
     /* background: rgba(0, 0, 0, 0.745); */
-    background: #fff;
+    background: rgb(0, 0, 0);
     padding: 10px;
 }
 
@@ -95,10 +95,10 @@
 
 .scroll-down span {
     display: block;
-    width: 20px;
-    height: 20px;
-    border-bottom: 3px solid #fff;
-    border-right: 3px solid #fff;
+    width: 28px;
+    height: 28px;
+    border-bottom: 5px solid #bf1e2e;
+    border-right: 5px solid #bf1e2e;
     transform: rotate(45deg);
     margin: -10px;
     animation: animate 2s infinite;

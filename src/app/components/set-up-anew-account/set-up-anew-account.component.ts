@@ -31,7 +31,10 @@ export class SetUpANewAccountComponent implements OnInit {
   phoneNumberInputMask = createMask({
     mask: '(999) 999-9999',
   });
-  
+
+  addPhoneNumberInputMask = createMask({
+    mask: '(999) 999-9999',
+  });
   selectedServiceType: string = "Residential";
   serviceType: string[] = ['Residential', 'Business'];
 
@@ -44,6 +47,7 @@ export class SetUpANewAccountComponent implements OnInit {
   lastName : string = "";
   email : string = "";
   phone : string = "";
+  addPhoneNumber : string = "";
   dob : string = "";
   addName : string = "";
   company: string = "";
@@ -102,6 +106,7 @@ export class SetUpANewAccountComponent implements OnInit {
     this.lastName = form.value.lastName;
     this.email = form.value.email;
     this.phone = form.value.phoneNumber;
+    this.addPhoneNumber = form.value.addPhoneNumber;
     this.dob = form.value.dob;
     this.addName = form.value.addName;
     
@@ -120,7 +125,7 @@ export class SetUpANewAccountComponent implements OnInit {
     console.log( this.dob);
     console.log(this.addName );
 
-     this._scheduleService.newAccountData(this.selectedBuyingOrRenting, this.fullAddress, this.ownershipOrLeaseDate, this.selectedServiceType, this.company, this.firstName, this.lastName, this.email, this.phone, this.dob, this.addName).subscribe(
+     this._scheduleService.newAccountData(this.selectedBuyingOrRenting, this.fullAddress, this.ownershipOrLeaseDate, this.selectedServiceType, this.company, this.firstName, this.lastName, this.email, this.phone, this.dob, this.addName, this.addPhoneNumber).subscribe(
       res => {
         setTimeout(() => {
          
