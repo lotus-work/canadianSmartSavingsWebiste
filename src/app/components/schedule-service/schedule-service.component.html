@@ -87,7 +87,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mb-3">
-                                            <p>Email Address</p>
+                                            <p>Email</p>
                                             <input type="email" class="form-control" id="floatingInput" name="email"
                                                 #emailAddressRef="ngModel" ngModel required="">
 
@@ -95,7 +95,7 @@
                                         <div *ngIf="emailAddressRef.errors && (emailAddressRef.dirty || emailAddressRef.touched)"
                                             style="text-align:left; color:red;">
                                             <div [hidden]="!emailAddressRef.errors">
-                                                <p>&nbsp;Email Address is mandatory</p>
+                                                <p>&nbsp;Email is mandatory</p>
                                             </div>
                                         </div>
                                     </div>
@@ -268,12 +268,12 @@
                                         <div class="form-floating mb-3">
                                             <input type="email" class="form-control" id="floatingInput" name="email"
                                                 #emailAdderssRef="ngModel" ngModel required />
-                                            <label for="floatingInput">Email address</label>
+                                            <label for="floatingInput">Email</label>
                                         </div>
                                         <div *ngIf="emailAdderssRef.errors && (emailAdderssRef.dirty || emailAdderssRef.touched)"
                                             style="text-align:left; color:red;">
                                             <div [hidden]="!emailAdderssRef.errors">
-                                                <p>&nbsp;E-Mail is mandatory</p>
+                                                <p>&nbsp;Email is mandatory</p>
                                             </div>
                                         </div>
                                     </div>
