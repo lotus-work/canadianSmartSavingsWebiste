@@ -154,33 +154,26 @@
                     </div>
                   </div>
                   <div class="col-sm-6">
-                    <p class="fs-5">Additional Phone Number</p>
-                    <div class="mb-3">
-
-                      <input type="tel" class="form-control" name="addPhoneNumber" id="addPhoneNumber"
-                        #addPhoneNumberRef="ngModel" ngModel [inputMask]="addPhoneNumberInputMask">
+                    <p class="fs-5">Email</p>
+                    <div class=" mb-3">
+                      <input type="email" class="form-control" name="email" #emailAddressRef="ngModel" ngModel
+                        required="" placeholder="name@example.com">
                     </div>
-                
+                    <div *ngIf="emailAddressRef.errors && (emailAddressRef.dirty || emailAddressRef.touched)"
+                      style="text-align:left; color:red;">
+                      <div [hidden]="!emailAddressRef.errors">
+                        <p>&nbsp;Email is mandatory</p>
+                      </div>
+                    </div>
                   </div>
+                 
               
 
                  
                 
                   <div class="col-sm-12 ">
                     <div class="row">
-                      <div class="col-sm-6">
-                        <p class="fs-5">Email</p>
-                        <div class=" mb-3">
-                          <input type="email" class="form-control" name="email" #emailAddressRef="ngModel" ngModel
-                            required="" placeholder="name@example.com">
-                        </div>
-                        <div *ngIf="emailAddressRef.errors && (emailAddressRef.dirty || emailAddressRef.touched)"
-                          style="text-align:left; color:red;">
-                          <div [hidden]="!emailAddressRef.errors">
-                            <p>&nbsp;Email is mandatory</p>
-                          </div>
-                        </div>
-                      </div>
+                     
                       <div class="col-lg-6 col-md-6 col-sm-12 col-12 ">
                         <div class="d-flex">
                           <p class="fs-5">Additional name on this account </p>
@@ -201,7 +194,15 @@
                         </div>
 
                       </div>
+                      <div class="col-sm-6">
+                        <p class="fs-5">Additional Phone Number</p>
+                        <div class="mb-3">
+    
+                          <input type="tel" class="form-control" name="addPhoneNumber" id="addPhoneNumber"
+                            #addPhoneNumberRef="ngModel" ngModel [inputMask]="addPhoneNumberInputMask">
+                        </div>
                     
+                      </div>
                     </div>
 
                     <div>
