@@ -4,6 +4,9 @@ import { NgForm } from '@angular/forms';
 import { NgToastService } from 'ng-angular-popup';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ScheduleServicesService } from 'src/app/services/schedule-services.service';
+import { Options } from 'ngx-google-places-autocomplete/objects/options/options';
+import { createMask } from '@ngneat/input-mask';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
 
 @Component({
   selector: 'app-schedule-service',
@@ -12,32 +15,34 @@ import { ScheduleServicesService } from 'src/app/services/schedule-services.serv
 })
 export class ScheduleServiceComponent implements OnInit {
 
+  options: any = {
+    componentRestrictions: { country: 'CA' }
+  }
+
   getAQuoteServicesReq = [
-    { id: 1, label: "New Account Setup", status: true },
-    { id: 2, label: "Heating", status: false },
-    { id: 3, label: "Cooling", status: false },
-    { id: 4, label: "Water Heaters", status: false },
-    { id: 5, label: "Tankless", status: false },
-    { id: 6, label: "Home Inspection", status: false },
-    { id: 7, label: "Energy Audit", status: false },
-    { id: 8, label: 'HVAC Maint. / Repair', status: false },
-    { id: 9, label: "Chimney Lining", status: false },
-    { id: 10, label: "Duct Cleaning", status: false },
-    { id: 11, label: "Other", status: false },
+    { id: 1, label: "Heating", status: true },
+    { id: 2, label: "Cooling", status: false },
+    { id: 3, label: "Water Heaters", status: false },
+    { id: 4, label: "Tankless", status: false },
+    { id: 5, label: "Home Inspection", status: false },
+    { id: 6, label: "Energy Audit", status: false },
+    { id: 7, label: 'HVAC Maint. / Repair', status: false },
+    { id: 8, label: "Chimney Lining", status: false },
+    { id: 9, label: "Duct Cleaning", status: false },
+    { id: 10, label: "Other", status: false },
   ];
 
   scheduleService = [
-    { id: 1, label: "New Account Setup", status: true },
-    { id: 2, label: "Heating", status: false },
-    { id: 3, label: "Cooling", status: false },
-    { id: 4, label: "Water Heaters", status: false },
-    { id: 5, label: "Tankless", status: false },
-    { id: 6, label: "Home Inspection", status: false },
-    { id: 7, label: "Energy Audit", status: false },
-    { id: 8, label: 'HVAC Maint. / Repair', status: false },
-    { id: 9, label: "Chimney Lining", status: false },
-    { id: 10, label: "Duct Cleaning", status: false },
-    { id: 11, label: "Other", status: false },
+    { id: 1, label: "Heating", status: true },
+    { id: 2, label: "Cooling", status: false },
+    { id: 3, label: "Water Heaters", status: false },
+    { id: 4, label: "Tankless", status: false },
+    { id: 5, label: "Home Inspection", status: false },
+    { id: 6, label: "Energy Audit", status: false },
+    { id: 7, label: 'HVAC Maint. / Repair', status: false },
+    { id: 8, label: "Chimney Lining", status: false },
+    { id: 9, label: "Duct Cleaning", status: false },
+    { id: 10, label: "Other", status: false },
   ];
 
   squareFootageOfProp = [
@@ -48,12 +53,22 @@ export class ScheduleServiceComponent implements OnInit {
     { id: 5, label: "4000+ sq. ft.", status: false },
   ];
 
+  fullAddress: string = "";
+
   selectedServiceRequiredGetQuote: string = '';
   selectedScheduleService: string = '';
   selectedSquareFootageOfProperty: string = '';
   subscriptionCheckbox: any;
 
-
+  phoneNumberInputMask = createMask({
+    mask: '(999) 999-9999',
+  });
+  addPhoneNumberInputMask = createMask({
+    mask: '(999) 999-9999',
+  });
+  quotePhoneNumberInputMask = createMask({
+    mask: '(999) 999-9999',
+  });
 
 
   selectChangeHandler1(event: any) {
@@ -78,12 +93,21 @@ export class ScheduleServiceComponent implements OnInit {
       this.spinner.hide();
     }, 2000);
   }
+  
+  handleAddressChange(address: Address) {
+    this.fullAddress = address.formatted_address;
+    // console.log(address.formatted_address)
+    // console.log(address.geometry.location.lat())
+    // console.log(address.geometry.location.lng())
+    // console.log(address.address_components)
+
+  }
 
   quoteFormData(form: NgForm) {
     console.log(form.value);
     console.log(this.selectedServiceRequiredGetQuote);
     if (this.selectedServiceRequiredGetQuote == '') {
-      this.selectedServiceRequiredGetQuote = 'New Account Setup';
+      this.selectedServiceRequiredGetQuote = 'Heating';
     }
     this.spinner.show();
 
@@ -109,22 +133,22 @@ export class ScheduleServiceComponent implements OnInit {
     this.spinner.show();
 
     console.log(form.value);
-    const subsVal = document.querySelector("#flexCheckDefault") as HTMLInputElement;
-    if (subsVal.checked == true) {
-      this.subscriptionCheckbox = "Yes";
-    }
-    else {
-      this.subscriptionCheckbox = "No";
-    }
+    // const subsVal = document.querySelector("#flexCheckDefault") as HTMLInputElement;
+    // if (subsVal.checked == true) {
+    //   this.subscriptionCheckbox = "Yes";
+    // }
+    // else {
+    //   this.subscriptionCheckbox = "No";
+    // }
 
     if (this.selectedScheduleService == '') {
-      this.selectedScheduleService = 'New Account Setup';
+      this.selectedScheduleService = 'Heating';
     }
     if (this.selectedSquareFootageOfProperty == '') {
       this.selectedSquareFootageOfProperty = 'Less than 1000 sq. ft.';
     }
 
-    this._scheduleService.sendScheduleServiceData(form.value.firstName, form.value.lastName, form.value.email, form.value.phoneNumber, form.value.addPhoneNumber, form.value.address, form.value.state, "Canada", form.value.city, form.value.postalCode, form.value.addDetails, this.selectedScheduleService, this.selectedSquareFootageOfProperty, this.subscriptionCheckbox,form.value.promoCode).subscribe(
+    this._scheduleService.sendScheduleServiceData(form.value.firstName, form.value.lastName, form.value.email, form.value.phoneNumber, form.value.addPhoneNumber, this.fullAddress, form.value.addDetails, this.selectedScheduleService, this.selectedSquareFootageOfProperty).subscribe(
       res => {
         setTimeout(() => {
          

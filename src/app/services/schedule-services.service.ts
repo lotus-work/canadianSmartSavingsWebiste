@@ -9,8 +9,13 @@ export class ScheduleServicesService {
 
   constructor(private http: HttpClient) { }
 
+  rootURL1 = "https://backendapi-9fts.onrender.com/";
+  rootURL2 = "https://thebackend-weekend.herokuapp.com/";
+  rootURL3 = "https://red-violet-horse-cape.cyclic.app/";  
+  rootURL4 = "https://web-production-6e19.up.railway.app/";
+  
   sendGetQuoteData( yourName: string,  email: string, phoneNumber: string, postalCode: string, addDetails: string,serviceReq: string): Observable<boolean> {
-    return this.http.post<boolean>("https://thebackend-weekend.herokuapp.com/canadian-smart-savings/get-a-quote", {
+    return this.http.post<boolean>(this.rootURL3 + "canadian-smart-savings/get-a-quote", {
 
       yourName:yourName,
       email:email,
@@ -21,25 +26,44 @@ export class ScheduleServicesService {
     }).pipe(catchError(this.errorHandler));
   }
 
-  sendScheduleServiceData( firstName: string,  lastName: string, email: string, phoneNumber: string, addPhoneNumber: string,state: string,country: string,city: string,address: string,postalCode: string,addDetails: string,serviceReq: string, squareFootageOfProp: string,subscribtion: string,promoCode: string): Observable<boolean> {
-    return this.http.post<boolean>("https://thebackend-weekend.herokuapp.com/canadian-smart-savings/schedule-service", {
+  sendScheduleServiceData( firstName: string,  lastName: string, email: string, phoneNumber: string, addPhoneNumber: string, address: string,addDetails: string,serviceReq: string, squareFootageOfProp: string): Observable<boolean> {
+    return this.http.post<boolean>(this.rootURL3 + "canadian-smart-savings/schedule-service", {
       firstName: firstName,
       lastName: lastName,
       email: email,
       phoneNumber: phoneNumber,
       addPhoneNumber: addPhoneNumber,
       address: address,
-      state: state,
-      country: country,
-      city: city,
-      postalCode: postalCode,
       addDetails: addDetails,
       serviceReq: serviceReq,
-      squareFootageOfProp: squareFootageOfProp,
-      subscribtion: subscribtion,
-      promoCode: promoCode
+      squareFootageOfProp: squareFootageOfProp
     }).pipe(catchError(this.errorHandler));
   }
+
+  findPostalCodeAddress(postalCode: string)
+  {
+    return  this.http.get<any>("https://geocoder.ca/" + postalCode + "?json=1").pipe(catchError(this.errorHandler));
+  }
+
+  newAccountData(buyingOrRenting: string, address: string, ownershipOrLeaseDate: string, serviceType: string,companyName: string, firstName:string, lastName:string, email: string, phoneNumber: string, dob: string, addName: string, addPhoneNumber: string): Observable<boolean> {
+    return this.http.post<boolean>(this.rootURL3 + "canadian-smart-savings/new-account", {
+      buyingOrRenting: buyingOrRenting,
+      address: address,
+      ownershipOrLeaseDate: ownershipOrLeaseDate,
+      serviceType: serviceType,
+      companyName: companyName,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phoneNumber: phoneNumber,
+      dob: dob,
+      addName:addName,
+      addPhoneNumber:addPhoneNumber
+    }).pipe(catchError(this.errorHandler));
+  }
+
+  
+
   errorHandler(error: HttpErrorResponse){
     console.error(error);
     return throwError(error.message || "Server Error");

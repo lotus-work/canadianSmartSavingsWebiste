@@ -61,6 +61,8 @@ a{
     text-align: center !important;
     transition: all .3s ease-in-out !important;
     text-transform: uppercase;
+    font-family: 'Oswald', sans-serif;
+    
 }
 
 .btn-vary1 {

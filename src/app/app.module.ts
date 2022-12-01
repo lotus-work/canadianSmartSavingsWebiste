@@ -17,6 +17,11 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgToastModule } from "ng-angular-popup";
+import { SetUpANewAccountComponent } from './components/set-up-anew-account/set-up-anew-account.component';
+import { PopoverModule } from "ngx-smart-popover";
+import { OnSubmitNewAccountComponent } from './components/on-submit-new-account/on-submit-new-account.component';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { InputMaskModule } from "@ngneat/input-mask";
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +32,9 @@ import { NgToastModule } from "ng-angular-popup";
     ContactUsComponent,
     TestimonialsComponent,
     ServiceAreasComponent,
-    ThankYouComponent
+    ThankYouComponent,
+    SetUpANewAccountComponent,
+    OnSubmitNewAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +43,10 @@ import { NgToastModule } from "ng-angular-popup";
     FormsModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
-    NgToastModule 
+    NgToastModule ,
+    PopoverModule,
+    GooglePlaceModule,
+    InputMaskModule.forRoot({ inputSelector: 'input', isAsync: true }),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [HttpClientModule],

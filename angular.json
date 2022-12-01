@@ -13,6 +13,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "ngx-google-places-autocomplete"
+            ],
             "outputPath": "dist/candian-smart-savings-website",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -27,7 +30,7 @@
               "./node_modules/ngx-spinner/animations/ball-scale-multiple.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts" :["./node_modules/jquery/dist/jquery.min.js"]
           },
           "configurations": {
             "production": {
@@ -97,7 +100,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts" :["./node_modules/jquery/dist/jquery.min.js"]
           }
         }
       }

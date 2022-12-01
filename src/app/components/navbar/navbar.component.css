@@ -28,3 +28,20 @@ text-decoration: none;
 .navbar-text a:hover{
     text-decoration: underline;
 }
+
+.logo img{
+    width: 230px;
+}
+
+@media (max-width: 480px) {
+    .logo img{
+        width: 130px;
+    }
+ 
+}
+@media (max-width: 320px) {
+    .logo img{
+        width: 130px;
+    }
+   
+}

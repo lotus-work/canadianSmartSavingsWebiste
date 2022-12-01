@@ -1,0 +1,248 @@
+<app-navbar></app-navbar>
+<section class="container set-up-a-new-account mt-3">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-10 col-md-10 col-sm-11 col-11">
+      <div class="header-section">
+        <h3 class="title">NEW ACCOUNT</h3>
+        <hr>
+        <div class="progress">
+          <div class="progress-bar bg-success" role="progressbar" id="progress-bar"
+            attr.aria-valuenow="{{this.progressWidth}}" aria-valuemin="0" aria-valuemax="100">{{this.progressWidth}}%
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <p class="fs-5 text-muted">Step {{step}} of 2</p>
+
+      </div>
+
+      <div>
+        <div class="new-account-form p-3">
+          <div class="form-1" [ngStyle]="{display:isVisibleForm1?'block':'none'}">
+            <form #form1="ngForm" (ngSubmit)="form1Data(form1)" class="needs-validation" novalidate="">
+              <div class="row g-3">
+
+
+                <div class="col-sm-12">
+                  <p class="fs-5">Buying Or Renting</p>
+                  <div *ngFor="let val of buyingOrRenting; let i = index">
+                    <input id="val{{i}}" name="buyingOrRenting" type="radio" [value]="val"
+                      [(ngModel)]="selectedBuyingOrRenting" />
+                    <label for="">&nbsp;&nbsp;{{val}}</label>
+                  </div>
+
+                </div>
+
+                <div class="col-sm-6 col-12 ">
+                  <div class="mb-3">
+                    <p class="fs-5">Your Address</p>
+                    <input class="form-control" ngx-google-places-autocomplete [options]="options"
+                      (onAddressChange)="handleAddressChange($event)" name="address" #addressRef="ngModel" ngModel required="" />
+                  </div>
+
+                  <div *ngIf="addressRef.errors && (addressRef.dirty || addressRef.touched)"
+                    style="text-align:left; color:red;">
+                    <div [hidden]="!addressRef.errors">
+                      <p>&nbsp;Address is mandatory</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="mb-3">
+                    <p class="fs-5">When did you take ownership or start your lease ?</p>
+
+                    <input type="date" class="form-control" id="floatingInput" id="ownershipLeaseDate"
+                      name="ownershipLeaseDate" #ownershipLeaseDateRef="ngModel" ngModel required="">
+                  </div>
+
+                  <div
+                    *ngIf="ownershipLeaseDateRef.errors && (ownershipLeaseDateRef.dirty || ownershipLeaseDateRef.touched)"
+                    style="text-align:left; color:red;">
+                    <div [hidden]="!ownershipLeaseDateRef.errors">
+                      <p>&nbsp;Select a first date of ownership or lease date.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr class="my-4">
+              <button type="submit" class="btn btn-vary1" (click)="showNext()"
+                [disabled]="!form1.form.valid">Next</button>
+              <!-- <button type="submit" class="btn btn-vary1" (click)="showNext()">Next</button> -->
+            </form>
+
+          </div>
+          <div [ngStyle]="{display:isVisibleForm2?'block':'none'}">
+            <div class="form-2">
+              <form #form2="ngForm" (ngSubmit)="form2Data(form2)" class="needs-validation" novalidate="">
+                <div class="row g-3">
+                  <div class="col-sm-12">
+                    <p class="fs-5">Service Type</p>
+                    <div *ngFor="let val of serviceType; let i = index">
+                      <input id="val{{i}}" name="serviceType" type="radio" [value]="val"
+                        [(ngModel)]="selectedServiceType" />
+                      <label for="">&nbsp;&nbsp;{{val}}</label>
+                    </div>
+
+                  </div>
+
+                  <div class="col-12 " *ngIf="selectedServiceType == 'Business'">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <p class="fs-5">Company Name</p>
+                        <div class="mb-3">
+
+                          <input type="text" class="form-control" name="companyName" #companyNameRef="ngModel" ngModel
+                            required="">
+
+                        </div>
+                        <div *ngIf="companyNameRef.errors && (companyNameRef.dirty || companyNameRef.touched)"
+                          style="text-align:left; color:red;">
+                          <div [hidden]="!companyNameRef.errors">
+                            <p>&nbsp;Company Name is mandatory</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                  </div>
+                  <div class="col-sm-6 col-12 ">
+                    <p class="fs-5">First Name</p>
+                    <div class="mb-3">
+
+                      <input type="text" class="form-control" name="firstName" #firstNameRef="ngModel" ngModel
+                        required="">
+
+                    </div>
+                    <div *ngIf="firstNameRef.errors && (firstNameRef.dirty || firstNameRef.touched)"
+                      style="text-align:left; color:red;">
+                      <div [hidden]="!firstNameRef.errors">
+                        <p>&nbsp;First Name is mandatory</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-12">
+                    <p class="fs-5">Last Name</p>
+                    <div class="mb-3">
+
+                      <input type="text" class="form-control" name="lastName" #lastNameRef="ngModel" ngModel
+                        required="">
+
+                    </div>
+                    <div *ngIf="lastNameRef.errors && (lastNameRef.dirty || lastNameRef.touched)"
+                      style="text-align:left; color:red;">
+                      <div [hidden]="!lastNameRef.errors">
+                        <p>&nbsp;Last Name is mandatory</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <p class="fs-5">Phone Number</p>
+                    <div class="mb-3">
+
+                      <input type="tel" class="form-control" name="phoneNumber" id="phoneNumber"
+                        #phoneNumberRef="ngModel" ngModel required="" [inputMask]="phoneNumberInputMask">
+                    </div>
+                    <div *ngIf="phoneNumberRef.errors && (phoneNumberRef.dirty || phoneNumberRef.touched)"
+                      style="text-align:left; color:red;">
+                      <div [hidden]="!phoneNumberRef.errors">
+                        <p>&nbsp;Phone is mandatory</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <p class="fs-5">Email</p>
+                    <div class=" mb-3">
+                      <input type="email" class="form-control" name="email" #emailAddressRef="ngModel" ngModel
+                        required="" placeholder="name@example.com">
+                    </div>
+                    <div *ngIf="emailAddressRef.errors && (emailAddressRef.dirty || emailAddressRef.touched)"
+                      style="text-align:left; color:red;">
+                      <div [hidden]="!emailAddressRef.errors">
+                        <p>&nbsp;Email is mandatory</p>
+                      </div>
+                    </div>
+                  </div>
+                 
+              
+
+                 
+                
+                  <div class="col-sm-12 ">
+                    <div class="row">
+                     
+                      <div class="col-lg-6 col-md-6 col-sm-12 col-12 ">
+                        <div class="d-flex">
+                          <p class="fs-5">Additional name on this account </p>
+
+                          <div
+                            popover="Use this field to add a spouse, roommate or other trusted party to have access this account."
+                            popoverPlacement="top" [popoverOnHover]="false" [popoverCloseOnClickOutside]="true"
+                            [popoverCloseOnMouseOutside]="false" [popoverDisabled]="false" [popoverAnimation]="true"
+                            [popoverDismissTimeout]="5000">
+                            <i class="fa fa-question-circle ms-3 fs-3"></i>
+                          </div>
+                        </div>
+
+                        <div class="mb-3">
+
+                          <input type="text" class="form-control" name="addName" #addNameRef="ngModel" ngModel>
+
+                        </div>
+
+                      </div>
+                      <div class="col-sm-6">
+                        <p class="fs-5">Additional Phone Number</p>
+                        <div class="mb-3">
+    
+                          <input type="tel" class="form-control" name="addPhoneNumber" id="addPhoneNumber"
+                            #addPhoneNumberRef="ngModel" ngModel [inputMask]="addPhoneNumberInputMask">
+                        </div>
+                    
+                      </div>
+                    </div>
+
+                    <div>
+
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="mb-3">
+                      <p class="fs-5">Date of Birth</p>
+
+                      <input type="date" class="form-control" id="floatingInput" name="dob" #dobDateRef="ngModel"
+                        ngModel required="">
+
+                    </div>
+
+                    <div *ngIf="dobDateRef.errors && (dobDateRef.dirty || dobDateRef.touched)"
+                      style="text-align:left; color:red;">
+                      <div [hidden]="!dobDateRef.errors">
+                        <p>&nbsp;Date of Birth is required. </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr class="my-4">
+                <div>
+                  <button type="button" class="btn btn-dark me-2" (click)="showPre()">Previous</button>
+
+                  <button type="submit" class="btn btn-vary1" [disabled]="!form2.form.valid">Submit</button>
+
+                </div>
+              </form>
+
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
