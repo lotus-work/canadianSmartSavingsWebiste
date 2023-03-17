@@ -1,0 +1,7 @@
+.about-us-info{
+    padding: 60px 0;
+    background: rgba(184,180,180,.115);
+}
+.about-us-info .intro {
+    text-align: justify;
+}

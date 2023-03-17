@@ -1,0 +1,33 @@
+.services{
+    padding: 60px 0;
+    background: rgba(184,180,180,.115);
+}
+.services a{
+    text-decoration: none;
+}
+.card {
+    background: rgb(225, 101, 33);
+    background: linear-gradient(90deg, rgba(225, 101, 33, 1) 39%, rgba(191, 30, 46, 1) 87%);
+    background-size: 0 100%;
+    background-repeat: no-repeat;
+    transition: .7s;overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.card:hover {
+    background-size: 100% 100%;
+    color: #fff;
+}
+
+.card img {
+    filter: brightness(70%);
+    transition: transform 0.25s;
+}
+
+.card:hover img{
+    transform: scale(1.02);
+}
+
+.card .card-text {
+    text-transform: uppercase;
+}

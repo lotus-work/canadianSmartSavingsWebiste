@@ -1,0 +1,26 @@
+.navigation .navbar {
+    /* box-shadow: 0 2px 8px 0 rgb(99 99 99 / 11%); */
+}
+
+@media only screen and (max-width: 768px) {
+   .navbar-collapse{
+    background-color: white;
+    padding: 20px 10px;
+   
+   }
+   .nav-link{
+    color: black;
+   }
+}
+
+.navbar-toggler {
+    font-size: 14px;
+    
+}
+
+.navbar-nav .nav-item .nav-link {
+  
+    position: relative;
+    text-transform: uppercase;
+    transition: all .3s ease-in-out;
+}

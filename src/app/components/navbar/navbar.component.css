@@ -15,8 +15,6 @@
 
 .navbar-nav .nav-item .nav-link {
     color: #5c5a5a;
-    font-family: 'Oswald', sans-serif;
- 
     position: relative;
     text-transform: uppercase;
     transition: all .3s ease-in-out;

@@ -1,0 +1,20 @@
+
+.testimonials{
+    font-family: 'Oswald', sans-serif;
+    background-color: #28221d;
+    padding: 60px 0;
+}
+.white{
+    color: #ffff;
+}
+.testimonials .apps-card{
+    box-shadow: rgba(99, 99, 99, 0.623) 0px 2px 8px 0px;
+    width: 100%;
+    border-style: none;
+    border-left-style: solid;
+    border-left-color: #bf1e2e;
+    
+    border-left-width: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}

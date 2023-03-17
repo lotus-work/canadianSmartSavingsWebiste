@@ -1,0 +1,21 @@
+.landing-help {
+
+    font-family: 'Oswald', sans-serif;
+    background-color: #28221d;
+    padding-top: 60px;
+}
+
+.white {
+    color: #ffff;
+}
+.phone-red a{
+    background: -webkit-linear-gradient(#e16521, #bf1e2e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+}
+
+.landing-help img {
+    width: 100%;
+    padding-top: -20px;
+}

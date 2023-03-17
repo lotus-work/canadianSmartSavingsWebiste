@@ -1,16 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
+    font-family: 'Oswald', sans-serif;
+   
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 
+}
+
+body {
+  --navbar-scroll: transparent;
+  --navbar-scroll-text: white;
+  --navbar-scroll-shadow: none;
+  --navlink-scroll-text: #ffffffe7;
+}
+
+.navbar {
+  background-color: var(--navbar-scroll);
+  transition: background-color 1s ease;
+  color: var(--navbar-scroll-text);
+  -webkit-box-shadow: var(--navbar-scroll-shadow);
+  box-shadow: var(--navbar-scroll-shadow);
+}
+
+.nav-link{
+  color: var(--navlink-scroll-text);
+}
+.nav-link:hover{
+  color: #1f66a7;
+}
+.navbar-toggler{
+  color: var(--navlink-scroll-text);
 }
 a{
      color: black;
@@ -42,17 +68,16 @@ a{
 
 .header-section .small-title {
     font-size: 28px;
-    font-family: 'Oswald', sans-serif;
     /* font-family: "Nunito Sans", sans-serif; */
     color: #bf1e2e;
     font-weight: 400;
-    line-height: 24px;
+    line-height: 38px;
     margin: 0px 0px 15px;
     text-transform: capitalize;
 }
 
 .btn {
-    border-radius: 30px !important;
+    /* border-radius: 30px !important; */
     color: #fff !important;
     font-size: 18px !important;
     font-weight: 500 !important;

@@ -22,6 +22,18 @@ import { PopoverModule } from "ngx-smart-popover";
 import { OnSubmitNewAccountComponent } from './components/on-submit-new-account/on-submit-new-account.component';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { InputMaskModule } from "@ngneat/input-mask";
+import { LandingHomeComponent } from './components/landing-home/landing-home.component';
+import { LandingNavbarComponent } from './components/landing-navbar/landing-navbar.component';
+import { LandingHelpComponent } from './components/landing-help/landing-help.component';
+import { LandingHowItWorksComponent } from './components/landing-how-it-works/landing-how-it-works.component';
+import { ServicesComponent } from './components/services/services.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { WhyUsComponent } from './components/why-us/why-us.component';
+import { PageIntroComponent } from './components/page-intro/page-intro.component';
+import { CoreValuesComponent } from './components/core-values/core-values.component';
+import { LandingTestimonialsComponent } from './components/landing-testimonials/landing-testimonials.component';
+import { GetFreeQuoteComponent } from './components/get-free-quote/get-free-quote.component';
+import { LandingContactComponent } from './components/landing-contact/landing-contact.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +46,19 @@ import { InputMaskModule } from "@ngneat/input-mask";
     ServiceAreasComponent,
     ThankYouComponent,
     SetUpANewAccountComponent,
-    OnSubmitNewAccountComponent
+    OnSubmitNewAccountComponent,
+    LandingHomeComponent,
+    LandingNavbarComponent,
+    LandingHelpComponent,
+    LandingHowItWorksComponent,
+    ServicesComponent,
+    AboutUsComponent,
+    WhyUsComponent,
+    PageIntroComponent,
+    CoreValuesComponent,
+    LandingTestimonialsComponent,
+    GetFreeQuoteComponent,
+    LandingContactComponent
   ],
   imports: [
     BrowserModule,
