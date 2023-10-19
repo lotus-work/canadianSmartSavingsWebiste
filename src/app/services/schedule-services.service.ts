@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,10 @@ export class ScheduleServicesService {
 
   rootURL1 = "https://backendapi-9fts.onrender.com/";
   rootURL2 = "https://thebackend-weekend.herokuapp.com/";
-  rootURL3 = "https://red-violet-horse-cape.cyclic.app/";  
+  rootURL3 = "http://localhost:3000/";  
   rootURL4 = "https://web-production-6e19.up.railway.app/";
-  
-  sendGetQuoteData( yourName: string,  email: string, phoneNumber: string, postalCode: string, addDetails: string,serviceReq: string): Observable<boolean> {
-    return this.http.post<boolean>(this.rootURL3 + "canadian-smart-savings/get-a-quote", {
+  sendGetQuoteData( yourName: string,  email: string, phoneNumber: string, postalCode: string, addDetails: string,serviceReq: string): Observable<any> {
+    return this.http.post<any>(this.rootURL3 + "canadian-smart-savings/get-a-quote", {
 
       yourName:yourName,
       email:email,
@@ -24,10 +24,11 @@ export class ScheduleServicesService {
       addDetails:addDetails,
       serviceReq:serviceReq
     }).pipe(catchError(this.errorHandler));
+    // return of(false);
   }
 
-  sendScheduleServiceData( firstName: string,  lastName: string, email: string, phoneNumber: string, addPhoneNumber: string, address: string,addDetails: string,serviceReq: string, squareFootageOfProp: string): Observable<boolean> {
-    return this.http.post<boolean>(this.rootURL3 + "canadian-smart-savings/schedule-service", {
+  sendScheduleServiceData( firstName: string,  lastName: string, email: string, phoneNumber: string, addPhoneNumber: string, address: string,addDetails: string,serviceReq: string, squareFootageOfProp: string): Observable<any> {
+    return this.http.post<any>(this.rootURL3 + "canadian-smart-savings/schedule-service", {
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -45,8 +46,8 @@ export class ScheduleServicesService {
     return  this.http.get<any>("https://geocoder.ca/" + postalCode + "?json=1").pipe(catchError(this.errorHandler));
   }
 
-  newAccountData(buyingOrRenting: string, address: string, ownershipOrLeaseDate: string, serviceType: string,companyName: string, firstName:string, lastName:string, email: string, phoneNumber: string, dob: string, addName: string, addPhoneNumber: string): Observable<boolean> {
-    return this.http.post<boolean>(this.rootURL3 + "canadian-smart-savings/new-account", {
+  newAccountData(buyingOrRenting: string, address: string, ownershipOrLeaseDate: string, serviceType: string,companyName: string, firstName:string, lastName:string, email: string, phoneNumber: string, dob: string, addName: string, addPhoneNumber: string): Observable<any> {
+    return this.http.post<any>(this.rootURL3 + "canadian-smart-savings/new-account", {
       buyingOrRenting: buyingOrRenting,
       address: address,
       ownershipOrLeaseDate: ownershipOrLeaseDate,

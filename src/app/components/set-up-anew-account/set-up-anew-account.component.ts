@@ -127,18 +127,48 @@ export class SetUpANewAccountComponent implements OnInit {
 
      this._scheduleService.newAccountData(this.selectedBuyingOrRenting, this.fullAddress, this.ownershipOrLeaseDate, this.selectedServiceType, this.company, this.firstName, this.lastName, this.email, this.phone, this.dob, this.addName, this.addPhoneNumber).subscribe(
       res => {
-        setTimeout(() => {
+
+
+        if (res.status == "success") {
+      
+          setTimeout(() => {
          
-          this.spinner.hide();
-        }, 1000);
-        this._toast.success({ detail: "SUCCESS", summary: 'Form successfully submitted', position: 'br' });
-        setTimeout( () => {
-          window.location.href ="/success-new-account?firstName=" + this.firstName + "&lastName=" + this.lastName+ "&email=" + this.email + "&phoneNumber=" + this.phone + "&address=" + this.fullAddress + "&ownerShipOrLeaseDate=" + this.ownershipOrLeaseDate;
-        }, 1000);
+            this.spinner.hide();
+          }, 1000);
+          this._toast.success({ detail: "SUCCESS", summary: 'Form successfully submitted', position: 'br' });
+          setTimeout( () => {
+            window.location.href ="/success-new-account?firstName=" + this.firstName + "&lastName=" + this.lastName+ "&email=" + this.email + "&phoneNumber=" + this.phone + "&address=" + this.fullAddress + "&ownerShipOrLeaseDate=" + this.ownershipOrLeaseDate;
+          }, 1000);
+
+      } else if (res.status == "error") {
+        alert(res.message);
+        location.reload;
+          setTimeout(() => {
+              this.spinner.hide();
+              window.location.reload();
+          }, 1000);
+
+      } else if (res.status == "timeout") {
+        alert(res.message);
+        location.reload;
+          setTimeout(() => {
+              this.spinner.hide();
+              window.location.reload();
+          }, 1000);
+
+        }
 
       },
       err => {
-        this._toast.warning({ detail: " FAILED", summary: 'Please try after sometime', position: 'br' });
+
+         // this._toast.warning({ detail: " FAILED", summary: 'Please try after sometime', position: 'br' });
+
+         alert('An error occurred. Please try after sometime!');
+         location.reload;
+           setTimeout(() => {
+               this.spinner.hide();
+               window.location.reload();
+           }, 1000);
 
       }, () => console.log("NEW Account FORM SUMBITTED SUCCESSFULLY"))
 
